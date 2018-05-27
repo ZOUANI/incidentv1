@@ -6,6 +6,10 @@
 package service;
 
 import bean.PlanPreventif;
+import bean.PlanPreventifItem;
+import bean.PlanPreventif;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +24,19 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
     @PersistenceContext(unitName = "incidentv1PU")
     private EntityManager em;
 
+    @EJB
+    PlanPreventifItemFacade planPreventifItemFacade;
+
+    @Override
+    public void create(PlanPreventif planPreventif) {
+        planPreventif.setId(generateId("id"));
+        super.create(planPreventif);
+    }
+
+    public void save(PlanPreventif planPreventif, List<PlanPreventifItem> planPreventifItems) {
+        create(planPreventif);
+        planPreventifItemFacade.save(planPreventif, planPreventifItems);
+    }
     @Override
     protected EntityManager getEntityManager() {
         return em;

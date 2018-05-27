@@ -5,7 +5,12 @@
  */
 package service;
 
+import bean.ExecutionPlanPreventif;
+import bean.ExecutionPlanPreventifItem;
+import static bean.ExecutionPlanPreventifItem_.executionPlanPreventif;
+import bean.PlanPreventif;
 import bean.PlanPreventifItem;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +22,30 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PlanPreventifItemFacade extends AbstractFacade<PlanPreventifItem> {
 
+    public void save(PlanPreventif planPreventif, List<PlanPreventifItem> planPreventifItems) {
+        for (PlanPreventifItem planPreventifItem : planPreventifItems) {
+            planPreventifItem.setPlanPreventif(planPreventif);
+            create(planPreventifItem);
+        }
+    }
+
+    public List<PlanPreventifItem> findByExecutionPlanPreventif(PlanPreventif planPreventif) {
+        return em.createQuery("SELECT item FROM PlanPreventifItem item WHERE item.planPreventif.id='" + planPreventif.getId() + "'").getResultList();
+    }
+
+    public void add(PlanPreventifItem planPreventifItem, List<PlanPreventifItem> planPreventifItems) {
+        planPreventifItems.add(clone(planPreventifItem));
+    }
+
+    public PlanPreventifItem clone(PlanPreventifItem planPreventifItem) {
+        PlanPreventifItem myCLone = new PlanPreventifItem();
+        myCLone.setCategorieEquipement(planPreventifItem.getCategorieEquipement());
+        myCLone.setDateDepart(planPreventifItem.getDateDepart());
+        myCLone.setDateFin(planPreventifItem.getDateFin());
+        myCLone.setDescription(planPreventifItem.getDescription());
+        myCLone.setResponsable(planPreventifItem.getResponsable());
+        return myCLone;
+    }
     @PersistenceContext(unitName = "incidentv1PU")
     private EntityManager em;
 
@@ -28,5 +57,5 @@ public class PlanPreventifItemFacade extends AbstractFacade<PlanPreventifItem> {
     public PlanPreventifItemFacade() {
         super(PlanPreventifItem.class);
     }
-    
+
 }
