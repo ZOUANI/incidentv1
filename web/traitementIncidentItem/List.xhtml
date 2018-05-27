@@ -31,13 +31,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_equipement}"/>
                             </f:facet>
-                            <h:outputText value="#{item.equipement}"/>
+                            <h:outputText value="#{item.equipement==null?'---------':item.equipement}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_traitementIncident}"/>
                             </f:facet>
-                            <h:outputText value="#{item.traitementIncident}"/>
+                            <h:outputText value="#{item.traitementIncident==null?'---------':item.traitementIncident}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

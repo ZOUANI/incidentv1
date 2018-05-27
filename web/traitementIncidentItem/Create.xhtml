@@ -14,15 +14,19 @@
                     <p:panelGrid columns="2" rendered="#{traitementIncidentItemController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_equipement}" for="equipement" />
                         <p:selectOneMenu id="equipement" value="#{traitementIncidentItemController.selected.equipement}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>  
                             <f:selectItems value="#{equipementController.itemsAvailableSelectOne}"
                                            var="equipementItem"
-                                           itemValue="#{equipementItem}"/>
+                                           itemValue="#{equipementItem}"
+                                           itemLabel="#{equipementItem.libelle}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_traitementIncident}" for="traitementIncident" />
                         <p:selectOneMenu id="traitementIncident" value="#{traitementIncidentItemController.selected.traitementIncident}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>  
                             <f:selectItems value="#{traitementIncidentController.itemsAvailableSelectOne}"
                                            var="traitementIncidentItem"
-                                           itemValue="#{traitementIncidentItem}"/>
+                                           itemValue="#{traitementIncidentItem}"
+                                           itemLabel="#{traitementIncidentItem.toString}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_technicien}" for="technicien" />
                         <p:selectOneMenu id="technicien" value="#{traitementIncidentItemController.selected.technicien}" >
