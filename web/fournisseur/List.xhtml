@@ -45,12 +45,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nom}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFournisseurTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{fournisseurController.prepareCreate}" update=":FournisseurCreateForm" oncomplete="PF('FournisseurCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FournisseurViewForm" oncomplete="PF('FournisseurViewDialog').show()" disabled="#{empty fournisseurController.selected}"/>

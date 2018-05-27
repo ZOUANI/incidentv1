@@ -18,9 +18,7 @@
                         <p:inputText id="siege" value="#{fournisseurController.selected.siege}" title="#{bundle.CreateFournisseurTitle_siege}" />
                         <p:outputLabel value="#{bundle.CreateFournisseurLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{fournisseurController.selected.nom}" title="#{bundle.CreateFournisseurTitle_nom}" />
-                        <p:outputLabel value="#{bundle.CreateFournisseurLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{fournisseurController.selected.id}" title="#{bundle.CreateFournisseurTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{fournisseurController.create}" value="#{bundle.Save}" update="display,:FournisseurListForm:datalist,:growl" oncomplete="handleSubmit(args,'FournisseurCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FournisseurCreateDialog.hide()"/>
                 </h:panelGroup>
