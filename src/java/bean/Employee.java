@@ -99,7 +99,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Employee[ id=" + id + " ]";
+        return nom+" "+prenom;
     }
     
 }
