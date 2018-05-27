@@ -25,10 +25,10 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
                                            var="entiteAdministrativeItem"
-                                           itemValue="#{entiteAdministrativeItem}"/>
+                                           itemValue="#{entiteAdministrativeItem}"
+                                           itemLabel="#{entiteAdministrativeItem.nom}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditEmployeeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.EditEmployeeTitle_id}" />
+                       
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.update}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmployeeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeEditDialog.hide()"/>

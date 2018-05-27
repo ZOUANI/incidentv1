@@ -62,7 +62,9 @@ public class CategorieEquipement implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.CategorieEquipement[ id=" + id + " ]";
+        return libelle;
     }
+
+  
 
 }

@@ -16,9 +16,7 @@
                         <p:inputText id="libelle" value="#{typeEntiteAdministrativeController.selected.libelle}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_libelle}" />
                         <p:outputLabel value="#{bundle.CreateTypeEntiteAdministrativeLabel_niveau}" for="niveau" />
                         <p:inputText id="niveau" value="#{typeEntiteAdministrativeController.selected.niveau}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_niveau}" />
-                        <p:outputLabel value="#{bundle.CreateTypeEntiteAdministrativeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{typeEntiteAdministrativeController.selected.id}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{typeEntiteAdministrativeController.create}" value="#{bundle.Save}" update="display,:TypeEntiteAdministrativeListForm:datalist,:growl" oncomplete="handleSubmit(args,'TypeEntiteAdministrativeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TypeEntiteAdministrativeCreateDialog.hide()"/>
                 </h:panelGroup>

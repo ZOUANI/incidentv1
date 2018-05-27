@@ -55,14 +55,9 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeeTitle_entiteAdministrative}"/>
                             </f:facet>
-                            <h:outputText value="#{item.entiteAdministrative}"/>
+                            <h:outputText value="#{item.entiteAdministrative==null?'------------':item.entiteAdministrative.nom}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmployeeTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{employeeController.prepareCreate}" update=":EmployeeCreateForm" oncomplete="PF('EmployeeCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EmployeeViewForm" oncomplete="PF('EmployeeViewDialog').show()" disabled="#{empty employeeController.selected}"/>

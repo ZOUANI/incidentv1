@@ -12,13 +12,13 @@
             <h:form id="TraitementIncidentCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{traitementIncidentController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTraitementIncidentLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{traitementIncidentController.selected.id}" title="#{bundle.CreateTraitementIncidentTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentLabel_incident}" for="incident" />
                         <p:selectOneMenu id="incident" value="#{traitementIncidentController.selected.incident}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                             <f:selectItems value="#{incidentController.itemsAvailableSelectOne}"
                                            var="incidentItem"
-                                           itemValue="#{incidentItem}"/>
+                                           itemValue="#{incidentItem}"
+                                           itemLabel="#{incidentItem.description}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentLabel_dateTraitement}" for="dateTraitement" />
                         <p:calendar id="dateTraitement" pattern="MM/dd/yyyy" value="#{traitementIncidentController.selected.dateTraitement}" title="#{bundle.EditTraitementIncidentTitle_dateTraitement}"  showOn="button"/>

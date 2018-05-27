@@ -39,12 +39,7 @@
                             </f:facet>
                             <h:outputText value="#{item.niveau}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTypeEntiteAdministrativeTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{typeEntiteAdministrativeController.prepareCreate}" update=":TypeEntiteAdministrativeCreateForm" oncomplete="PF('TypeEntiteAdministrativeCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TypeEntiteAdministrativeViewForm" oncomplete="PF('TypeEntiteAdministrativeViewDialog').show()" disabled="#{empty typeEntiteAdministrativeController.selected}"/>

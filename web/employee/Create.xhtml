@@ -20,14 +20,7 @@
                         <p:inputText id="tel" value="#{employeeController.selected.tel}" title="#{bundle.CreateEmployeeTitle_tel}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_email}" for="email" />
                         <p:inputText id="email" value="#{employeeController.selected.email}" title="#{bundle.CreateEmployeeTitle_email}" />
-                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_entiteAdministrative}" for="entiteAdministrative" />
-                        <p:selectOneMenu id="entiteAdministrative" value="#{employeeController.selected.entiteAdministrative}" >
-                            <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
-                                           var="entiteAdministrativeItem"
-                                           itemValue="#{entiteAdministrativeItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.CreateEmployeeTitle_id}" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployeeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDialog.hide()"/>

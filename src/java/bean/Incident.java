@@ -29,9 +29,9 @@ public class Incident implements Serializable {
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateIncident;
-    private int etat;// traite, non traite, en cours
+    private int etat;// en cours,traite, non traite
     @ManyToOne
-    private TypeIncident typeIncident;// traite, non traite, en cours
+    private TypeIncident typeIncident;
     @ManyToOne
     private Employee employeeDeclarant;
     @ManyToOne

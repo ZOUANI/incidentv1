@@ -18,17 +18,17 @@
                         <p:selectOneMenu id="categorieEquipement" value="#{equipementController.selected.categorieEquipement}" >
                             <f:selectItems value="#{categorieEquipementController.itemsAvailableSelectOne}"
                                            var="categorieEquipementItem"
-                                           itemValue="#{categorieEquipementItem}"/>
+                                           itemValue="#{categorieEquipementItem}"
+                                           itemLabel="#{categorieEquipementItem.libelle}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateEquipementLabel_fournisseur}" for="fournisseur" />
                         <p:selectOneMenu id="fournisseur" value="#{equipementController.selected.fournisseur}" >
                             <f:selectItems value="#{fournisseurController.itemsAvailableSelectOne}"
                                            var="fournisseurItem"
-                                           itemValue="#{fournisseurItem}"/>
+                                           itemValue="#{fournisseurItem}"
+                                           itemLabel="#{fournisseurItem.nom}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEquipementLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{equipementController.selected.id}" title="#{bundle.CreateEquipementTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{equipementController.create}" value="#{bundle.Save}" update="display,:EquipementListForm:datalist,:growl" oncomplete="handleSubmit(args,'EquipementCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EquipementCreateDialog.hide()"/>
                 </h:panelGroup>

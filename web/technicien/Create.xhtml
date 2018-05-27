@@ -21,14 +21,14 @@
                         <p:outputLabel value="#{bundle.CreateTechnicienLabel_email}" for="email" />
                         <p:inputText id="email" value="#{technicienController.selected.email}" title="#{bundle.CreateTechnicienTitle_email}" />
                         <p:outputLabel value="#{bundle.CreateTechnicienLabel_entiteAdministrative}" for="entiteAdministrative" />
-                        <p:selectOneMenu id="entiteAdministrative" value="#{technicienController.selected.entiteAdministrative}" >
+                        <p:selectOneMenu id="entiteAdministrative" value="#{technicienController.selected.entiteAdministrative}"> 
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                             <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
                                            var="entiteAdministrativeItem"
-                                           itemValue="#{entiteAdministrativeItem}"/>
+                                           itemValue="#{entiteAdministrativeItem}"
+                                           itemLabel="#{entiteAdministrativeItem.nom}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{technicienController.selected.id}" title="#{bundle.CreateTechnicienTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{technicienController.create}" value="#{bundle.Save}" update="display,:TechnicienListForm:datalist,:growl" oncomplete="handleSubmit(args,'TechnicienCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TechnicienCreateDialog.hide()"/>
                 </h:panelGroup>
