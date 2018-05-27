@@ -27,17 +27,12 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTypeIncidentTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTypeIncidentTitle_libelle}"/>
                             </f:facet>
-                            <h:outputText value="#{item.libelle}"/>
+                            <h:outputText value="#{item.libelle==null?'----------':item.libelle}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{typeIncidentController.prepareCreate}" update=":TypeIncidentCreateForm" oncomplete="PF('TypeIncidentCreateDialog').show()"/>

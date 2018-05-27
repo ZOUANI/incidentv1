@@ -39,12 +39,7 @@
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategorieDelaiTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{categorieDelaiController.prepareCreate}" update=":CategorieDelaiCreateForm" oncomplete="PF('CategorieDelaiCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CategorieDelaiViewForm" oncomplete="PF('CategorieDelaiViewDialog').show()" disabled="#{empty categorieDelaiController.selected}"/>

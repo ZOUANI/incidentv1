@@ -16,9 +16,7 @@
                         <p:inputText id="nbrHeure" value="#{categorieDelaiController.selected.nbrHeure}" title="#{bundle.EditCategorieDelaiTitle_nbrHeure}" />
                         <p:outputLabel value="#{bundle.EditCategorieDelaiLabel_description}" for="description" />
                         <p:inputText id="description" value="#{categorieDelaiController.selected.description}" title="#{bundle.EditCategorieDelaiTitle_description}" />
-                        <p:outputLabel value="#{bundle.EditCategorieDelaiLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{categorieDelaiController.selected.id}" title="#{bundle.EditCategorieDelaiTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{categorieDelaiController.update}" value="#{bundle.Save}" update="display,:CategorieDelaiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CategorieDelaiEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CategorieDelaiEditDialog.hide()"/>
                 </h:panelGroup>

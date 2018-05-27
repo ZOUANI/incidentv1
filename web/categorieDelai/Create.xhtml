@@ -16,8 +16,6 @@
                         <p:inputText id="nbrHeure" value="#{categorieDelaiController.selected.nbrHeure}" title="#{bundle.CreateCategorieDelaiTitle_nbrHeure}" />
                         <p:outputLabel value="#{bundle.CreateCategorieDelaiLabel_description}" for="description" />
                         <p:inputText id="description" value="#{categorieDelaiController.selected.description}" title="#{bundle.CreateCategorieDelaiTitle_description}" />
-                        <p:outputLabel value="#{bundle.CreateCategorieDelaiLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{categorieDelaiController.selected.id}" title="#{bundle.CreateCategorieDelaiTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{categorieDelaiController.create}" value="#{bundle.Save}" update="display,:CategorieDelaiListForm:datalist,:growl" oncomplete="handleSubmit(args,'CategorieDelaiCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CategorieDelaiCreateDialog.hide()"/>

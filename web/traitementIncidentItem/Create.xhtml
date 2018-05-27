@@ -26,21 +26,21 @@
                             <f:selectItems value="#{traitementIncidentController.itemsAvailableSelectOne}"
                                            var="traitementIncidentItem"
                                            itemValue="#{traitementIncidentItem}"
-                                           itemLabel="#{traitementIncidentItem.toString}"/>
+                                           itemLabel="#{traitementIncidentItem.description}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_technicien}" for="technicien" />
                         <p:selectOneMenu id="technicien" value="#{traitementIncidentItemController.selected.technicien}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem> 
                             <f:selectItems value="#{technicienController.itemsAvailableSelectOne}"
                                            var="technicienItem"
-                                           itemValue="#{technicienItem}"/>
+                                           itemValue="#{technicienItem}"
+                                           itemLabel="#{technicienItem.nom}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_dateTraitement}" for="dateTraitement" />
                         <p:calendar id="dateTraitement" pattern="MM/dd/yyyy HH:mm:ss" value="#{traitementIncidentItemController.selected.dateTraitement}" title="#{bundle.EditTraitementIncidentItemTitle_dateTraitement}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_etat}" for="etat" />
                         <p:inputText id="etat" value="#{traitementIncidentItemController.selected.etat}" title="#{bundle.CreateTraitementIncidentItemTitle_etat}" />
-                        <p:outputLabel value="#{bundle.CreateTraitementIncidentItemLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{traitementIncidentItemController.selected.id}" title="#{bundle.CreateTraitementIncidentItemTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{traitementIncidentItemController.create}" value="#{bundle.Save}" update="display,:TraitementIncidentItemListForm:datalist,:growl" oncomplete="handleSubmit(args,'TraitementIncidentItemCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TraitementIncidentItemCreateDialog.hide()"/>
                 </h:panelGroup>

@@ -43,7 +43,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_technicien}"/>
                             </f:facet>
-                            <h:outputText value="#{item.technicien}"/>
+                            <h:outputText value="#{item.technicien==null?'---------':item.technicien}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -59,12 +59,7 @@
                             </f:facet>
                             <h:outputText value="#{item.etat}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{traitementIncidentItemController.prepareCreate}" update=":TraitementIncidentItemCreateForm" oncomplete="PF('TraitementIncidentItemCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TraitementIncidentItemViewForm" oncomplete="PF('TraitementIncidentItemViewDialog').show()" disabled="#{empty traitementIncidentItemController.selected}"/>
