@@ -1,6 +1,7 @@
 package controller;
 
 import bean.Incident;
+import bean.IncidentItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.IncidentFacade;
@@ -27,6 +28,14 @@ public class IncidentController implements Serializable {
     private service.IncidentFacade ejbFacade;
     private List<Incident> items = null;
     private Incident selected;
+
+    public IncidentFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(IncidentFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
 
     public IncidentController() {
     }

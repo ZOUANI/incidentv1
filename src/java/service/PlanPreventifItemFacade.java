@@ -5,9 +5,6 @@
  */
 package service;
 
-import bean.ExecutionPlanPreventif;
-import bean.ExecutionPlanPreventifItem;
-import static bean.ExecutionPlanPreventifItem_.executionPlanPreventif;
 import bean.PlanPreventif;
 import bean.PlanPreventifItem;
 import java.util.List;
@@ -29,7 +26,7 @@ public class PlanPreventifItemFacade extends AbstractFacade<PlanPreventifItem> {
         }
     }
 
-    public List<PlanPreventifItem> findByExecutionPlanPreventif(PlanPreventif planPreventif) {
+    public List<PlanPreventifItem> findByPlanPreventif(PlanPreventif planPreventif) {
         return em.createQuery("SELECT item FROM PlanPreventifItem item WHERE item.planPreventif.id='" + planPreventif.getId() + "'").getResultList();
     }
 

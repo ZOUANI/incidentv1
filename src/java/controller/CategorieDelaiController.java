@@ -32,6 +32,9 @@ public class CategorieDelaiController implements Serializable {
     }
 
     public CategorieDelai getSelected() {
+        if(selected==null){
+            selected=new CategorieDelai();
+        }
         return selected;
     }
 
