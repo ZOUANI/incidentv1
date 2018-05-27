@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IncidentCreateDlg" widgetVar="IncidentCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateIncidentTitle}">
+            <h:form id="IncidentCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{incidentController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_dateIncident}" for="dateIncident" />
+                        <p:calendar id="dateIncident" pattern="MM/dd/yyyy" value="#{incidentController.selected.dateIncident}" title="#{bundle.EditIncidentTitle_dateIncident}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_etat}" for="etat" />
+                        <p:inputText id="etat" value="#{incidentController.selected.etat}" title="#{bundle.CreateIncidentTitle_etat}" />
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_typeIncident}" for="typeIncident" />
+                        <p:selectOneMenu id="typeIncident" value="#{incidentController.selected.typeIncident}" >
+                            <f:selectItems value="#{typeIncidentController.itemsAvailableSelectOne}"
+                                           var="typeIncidentItem"
+                                           itemValue="#{typeIncidentItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_employeeDeclarant}" for="employeeDeclarant" />
+                        <p:selectOneMenu id="employeeDeclarant" value="#{incidentController.selected.employeeDeclarant}" >
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="employeeDeclarantItem"
+                                           itemValue="#{employeeDeclarantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_validateur}" for="validateur" />
+                        <p:selectOneMenu id="validateur" value="#{incidentController.selected.validateur}" >
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="validateurItem"
+                                           itemValue="#{validateurItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_dateValidation}" for="dateValidation" />
+                        <p:calendar id="dateValidation" pattern="MM/dd/yyyy HH:mm:ss" value="#{incidentController.selected.dateValidation}" title="#{bundle.EditIncidentTitle_dateValidation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{incidentController.selected.description}" title="#{bundle.CreateIncidentTitle_description}" />
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{incidentController.selected.id}" title="#{bundle.CreateIncidentTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{incidentController.create}" value="#{bundle.Save}" update="display,:IncidentListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncidentCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IncidentCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

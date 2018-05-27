@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CategorieDelaiViewDlg" widgetVar="CategorieDelaiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCategorieDelaiTitle}">
+            <h:form id="CategorieDelaiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{categorieDelaiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCategorieDelaiLabel_nbrHeure}"/>
+                        <h:outputText value="#{categorieDelaiController.selected.nbrHeure}" title="#{bundle.ViewCategorieDelaiTitle_nbrHeure}"/>
+                        <h:outputText value="#{bundle.ViewCategorieDelaiLabel_description}"/>
+                        <h:outputText value="#{categorieDelaiController.selected.description}" title="#{bundle.ViewCategorieDelaiTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewCategorieDelaiLabel_id}"/>
+                        <h:outputText value="#{categorieDelaiController.selected.id}" title="#{bundle.ViewCategorieDelaiTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CategorieDelaiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

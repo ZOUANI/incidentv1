@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TypeEntiteAdministrativeCreateDlg" widgetVar="TypeEntiteAdministrativeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTypeEntiteAdministrativeTitle}">
+            <h:form id="TypeEntiteAdministrativeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{typeEntiteAdministrativeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTypeEntiteAdministrativeLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{typeEntiteAdministrativeController.selected.libelle}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.CreateTypeEntiteAdministrativeLabel_niveau}" for="niveau" />
+                        <p:inputText id="niveau" value="#{typeEntiteAdministrativeController.selected.niveau}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_niveau}" />
+                        <p:outputLabel value="#{bundle.CreateTypeEntiteAdministrativeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{typeEntiteAdministrativeController.selected.id}" title="#{bundle.CreateTypeEntiteAdministrativeTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{typeEntiteAdministrativeController.create}" value="#{bundle.Save}" update="display,:TypeEntiteAdministrativeListForm:datalist,:growl" oncomplete="handleSubmit(args,'TypeEntiteAdministrativeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TypeEntiteAdministrativeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

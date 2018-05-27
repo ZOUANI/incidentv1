@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlanPreventifViewDlg" widgetVar="PlanPreventifViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlanPreventifTitle}">
+            <h:form id="PlanPreventifViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planPreventifController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlanPreventifLabel_dateDepart}"/>
+                        <h:outputText value="#{planPreventifController.selected.dateDepart}" title="#{bundle.ViewPlanPreventifTitle_dateDepart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPlanPreventifLabel_dateFin}"/>
+                        <h:outputText value="#{planPreventifController.selected.dateFin}" title="#{bundle.ViewPlanPreventifTitle_dateFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPlanPreventifLabel_responsable}"/>
+                        <h:outputText value="#{planPreventifController.selected.responsable}" title="#{bundle.ViewPlanPreventifTitle_responsable}"/>
+                        <h:outputText value="#{bundle.ViewPlanPreventifLabel_description}"/>
+                        <h:outputText value="#{planPreventifController.selected.description}" title="#{bundle.ViewPlanPreventifTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewPlanPreventifLabel_id}"/>
+                        <h:outputText value="#{planPreventifController.selected.id}" title="#{bundle.ViewPlanPreventifTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlanPreventifViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

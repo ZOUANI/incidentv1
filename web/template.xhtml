@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="Plan Preventif">
+                            <p:menuitem value="PlanPreventif" outcome="/planPreventif/List.xhtml" />
+                            <p:menuitem value="PlanPreventifItem" outcome="/planPreventifItem/List.xhtml" />
+                            <p:menuitem value="ExecutionPlanPreventif" outcome="/executionPlanPreventif/List.xhtml" />
+                            <p:menuitem value="ExecutionPlanPreventifItem" outcome="/executionPlanPreventifItem/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Incident">
+                            <p:menuitem value="Incident" outcome="/incident/List.xhtml" />
+                            <p:menuitem value="IncidentItem" outcome="/incidentItem/List.xhtml" />
+                            <p:menuitem value="TypeIncident" outcome="/typeIncident/List.xhtml" />
+                            <p:menuitem value="CategorieDelai" outcome="/categorieDelai/List.xhtml" />
+                            <p:menuitem value="DegreUrgence" outcome="/degreUrgence/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Traitemlent Incident">
+                            <p:menuitem value="TraitementIncident" outcome="/traitementIncident/List.xhtml" />
+                            <p:menuitem value="TraitementIncidentItem" outcome="/traitementIncidentItem/List.xhtml" />
+
+                        </p:submenu>
+                        <p:submenu label="Equipement">
+                            <p:menuitem value="Equipement" outcome="/equipement/List.xhtml" />
+                            <p:menuitem value="CategorieEquipement" outcome="/categorieEquipement/List.xhtml" />
+                            <p:menuitem value="Fournisseur" outcome="/fournisseur/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Configuration">
+
+                            <p:menuitem value="Employee" outcome="/employee/List.xhtml" />
+                            <p:menuitem value="EntiteAdministrative" outcome="/entiteAdministrative/List.xhtml" />
+                            <p:menuitem value="Technicien" outcome="/technicien/List.xhtml" />
+                            <p:menuitem value="TypeEntiteAdministrative" outcome="/typeEntiteAdministrative/List.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

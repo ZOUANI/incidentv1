@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IncidentViewDlg" widgetVar="IncidentViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIncidentTitle}">
+            <h:form id="IncidentViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{incidentController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIncidentLabel_dateIncident}"/>
+                        <h:outputText value="#{incidentController.selected.dateIncident}" title="#{bundle.ViewIncidentTitle_dateIncident}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_etat}"/>
+                        <h:outputText value="#{incidentController.selected.etat}" title="#{bundle.ViewIncidentTitle_etat}"/>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_typeIncident}"/>
+                        <h:outputText value="#{incidentController.selected.typeIncident}" title="#{bundle.ViewIncidentTitle_typeIncident}"/>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_employeeDeclarant}"/>
+                        <h:outputText value="#{incidentController.selected.employeeDeclarant}" title="#{bundle.ViewIncidentTitle_employeeDeclarant}"/>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_validateur}"/>
+                        <h:outputText value="#{incidentController.selected.validateur}" title="#{bundle.ViewIncidentTitle_validateur}"/>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_dateValidation}"/>
+                        <h:outputText value="#{incidentController.selected.dateValidation}" title="#{bundle.ViewIncidentTitle_dateValidation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_description}"/>
+                        <h:outputText value="#{incidentController.selected.description}" title="#{bundle.ViewIncidentTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewIncidentLabel_id}"/>
+                        <h:outputText value="#{incidentController.selected.id}" title="#{bundle.ViewIncidentTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="IncidentViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

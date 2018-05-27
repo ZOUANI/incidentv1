@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraitementIncidentItemEditDlg" widgetVar="TraitementIncidentItemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTraitementIncidentItemTitle}">
+            <h:form id="TraitementIncidentItemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{traitementIncidentItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_equipement}" for="equipement" />
+                        <p:selectOneMenu id="equipement" value="#{traitementIncidentItemController.selected.equipement}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equipementController.itemsAvailableSelectOne}"
+                                           var="equipementItem"
+                                           itemValue="#{equipementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_technicien}" for="technicien" />
+                        <p:selectOneMenu id="technicien" value="#{traitementIncidentItemController.selected.technicien}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{technicienController.itemsAvailableSelectOne}"
+                                           var="technicienItem"
+                                           itemValue="#{technicienItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_dateTraitement}" for="dateTraitement" />
+                        <p:calendar id="dateTraitement" pattern="MM/dd/yyyy HH:mm:ss" value="#{traitementIncidentItemController.selected.dateTraitement}" title="#{bundle.EditTraitementIncidentItemTitle_dateTraitement}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_etat}" for="etat" />
+                        <p:inputText id="etat" value="#{traitementIncidentItemController.selected.etat}" title="#{bundle.EditTraitementIncidentItemTitle_etat}" />
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{traitementIncidentItemController.selected.id}" title="#{bundle.EditTraitementIncidentItemTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traitementIncidentItemController.update}" value="#{bundle.Save}" update="display,:TraitementIncidentItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TraitementIncidentItemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TraitementIncidentItemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

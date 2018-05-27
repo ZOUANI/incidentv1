@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TechnicienCreateDlg" widgetVar="TechnicienCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTechnicienTitle}">
+            <h:form id="TechnicienCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{technicienController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{technicienController.selected.nom}" title="#{bundle.CreateTechnicienTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{technicienController.selected.prenom}" title="#{bundle.CreateTechnicienTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{technicienController.selected.tel}" title="#{bundle.CreateTechnicienTitle_tel}" />
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{technicienController.selected.email}" title="#{bundle.CreateTechnicienTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_entiteAdministrative}" for="entiteAdministrative" />
+                        <p:selectOneMenu id="entiteAdministrative" value="#{technicienController.selected.entiteAdministrative}" >
+                            <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
+                                           var="entiteAdministrativeItem"
+                                           itemValue="#{entiteAdministrativeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTechnicienLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{technicienController.selected.id}" title="#{bundle.CreateTechnicienTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{technicienController.create}" value="#{bundle.Save}" update="display,:TechnicienListForm:datalist,:growl" oncomplete="handleSubmit(args,'TechnicienCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TechnicienCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

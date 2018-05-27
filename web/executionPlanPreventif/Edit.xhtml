@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExecutionPlanPreventifEditDlg" widgetVar="ExecutionPlanPreventifEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditExecutionPlanPreventifTitle}">
+            <h:form id="ExecutionPlanPreventifEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{executionPlanPreventifController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifLabel_dateDepart}" for="dateDepart" />
+                        <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{executionPlanPreventifController.selected.dateDepart}" title="#{bundle.EditExecutionPlanPreventifTitle_dateDepart}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifLabel_dateFin}" for="dateFin" />
+                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{executionPlanPreventifController.selected.dateFin}" title="#{bundle.EditExecutionPlanPreventifTitle_dateFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifLabel_responsable}" for="responsable" />
+                        <p:selectOneMenu id="responsable" value="#{executionPlanPreventifController.selected.responsable}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="responsableItem"
+                                           itemValue="#{responsableItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{executionPlanPreventifController.selected.description}" title="#{bundle.EditExecutionPlanPreventifTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{executionPlanPreventifController.selected.id}" title="#{bundle.EditExecutionPlanPreventifTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{executionPlanPreventifController.update}" value="#{bundle.Save}" update="display,:ExecutionPlanPreventifListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ExecutionPlanPreventifEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ExecutionPlanPreventifEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

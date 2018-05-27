@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EquipementViewDlg" widgetVar="EquipementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEquipementTitle}">
+            <h:form id="EquipementViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{equipementController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEquipementLabel_libelle}"/>
+                        <h:outputText value="#{equipementController.selected.libelle}" title="#{bundle.ViewEquipementTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewEquipementLabel_categorieEquipement}"/>
+                        <h:outputText value="#{equipementController.selected.categorieEquipement}" title="#{bundle.ViewEquipementTitle_categorieEquipement}"/>
+                        <h:outputText value="#{bundle.ViewEquipementLabel_fournisseur}"/>
+                        <h:outputText value="#{equipementController.selected.fournisseur}" title="#{bundle.ViewEquipementTitle_fournisseur}"/>
+                        <h:outputText value="#{bundle.ViewEquipementLabel_id}"/>
+                        <h:outputText value="#{equipementController.selected.id}" title="#{bundle.ViewEquipementTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EquipementViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
