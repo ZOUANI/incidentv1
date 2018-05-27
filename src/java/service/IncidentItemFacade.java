@@ -6,6 +6,8 @@
 package service;
 
 import bean.IncidentItem;
+import bean.PlanPreventifItem;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +22,19 @@ public class IncidentItemFacade extends AbstractFacade<IncidentItem> {
     @PersistenceContext(unitName = "incidentv1PU")
     private EntityManager em;
 
+    public void add(IncidentItem incidentItem, List<IncidentItem> incidentItems) {
+        incidentItems.add(clone(incidentItem));
+    }
+
+    public IncidentItem clone(IncidentItem incidentItem) {
+        IncidentItem myCLone = new IncidentItem();
+        myCLone.setDateTraitement(incidentItem.getDateTraitement());
+        myCLone.setCategorieDelai(incidentItem.getCategorieDelai());
+        myCLone.setDegreUrgence(incidentItem.getDegreUrgence());
+        myCLone.setEquipement(incidentItem.getEquipement());
+        return myCLone;
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -28,5 +43,5 @@ public class IncidentItemFacade extends AbstractFacade<IncidentItem> {
     public IncidentItemFacade() {
         super(IncidentItem.class);
     }
-    
+
 }

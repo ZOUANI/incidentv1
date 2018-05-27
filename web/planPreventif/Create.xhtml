@@ -6,32 +6,125 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition template="/template.xhtml">
 
-        <p:dialog id="PlanPreventifCreateDlg" widgetVar="PlanPreventifCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePlanPreventifTitle}">
-            <h:form id="PlanPreventifCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{planPreventifController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
-                        <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />
-                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateFin}" title="#{bundle.EditPlanPreventifTitle_dateFin}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_responsable}" for="responsable" />
-                        <p:selectOneMenu id="responsable" value="#{planPreventifController.selected.responsable}" >
-                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
-                                           var="responsableItem"
-                                           itemValue="#{responsableItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{planPreventifController.selected.description}" title="#{bundle.CreatePlanPreventifTitle_description}" />
-                        <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{planPreventifController.selected.id}" title="#{bundle.CreatePlanPreventifTitle_id}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{planPreventifController.create}" value="#{bundle.Save}" update="display,:PlanPreventifListForm:datalist,:growl" oncomplete="handleSubmit(args,'PlanPreventifCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PlanPreventifCreateDialog.hide()"/>
-                </h:panelGroup>
-            </h:form>
-        </p:dialog>
 
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPlanPreventifTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <p:panel header="INFO PLAN">
+                        <h:form id="PlanPreventifCreateForm">
+                            <h:panelGroup id="display">
+                                <p:panelGrid columns="8" rendered="#{planPreventifController.selected != null}">
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
+                                    <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />
+                                    <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateFin}" title="#{bundle.EditPlanPreventifTitle_dateFin}"  showOn="button"/>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_responsable}" for="responsable" />
+                                    <p:selectOneMenu id="responsable" value="#{planPreventifController.selected.responsable}" >
+                                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                                       var="responsableItem"
+                                                       itemValue="#{responsableItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_description}" for="description" />
+                                    <p:inputText id="description" value="#{planPreventifController.selected.description}" title="#{bundle.CreatePlanPreventifTitle_description}" />
+                                </p:panelGrid>
+                            </h:panelGroup>
+                        </h:form>
+                    </p:panel>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:panel header="INFO CATEGORIE PLAN">
+                        <h:form id="PlanPreventifItemCreateForm">
+                            <h:panelGroup id="display">
+                                <p:panelGrid columns="2" rendered="#{planPreventifController.planPreventifItem != null}">
+
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_categorieEquipement}" for="categorieEquipement" />
+                                    <p:selectOneMenu id="categorieEquipement" value="#{planPreventifController.planPreventifItem.categorieEquipement}" >
+                                        <f:selectItems value="#{categorieEquipementController.itemsAvailableSelectOne}"
+                                                       var="categorieEquipementItem"
+                                                       itemValue="#{categorieEquipementItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_dateDepart}" for="dateDepart" />
+                                    <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.planPreventifItem.dateDepart}" title="#{bundle.EditPlanPreventifItemTitle_dateDepart}"  showOn="button"/>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_dateFin}" for="dateFin" />
+                                    <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{planPreventifController.planPreventifItem.dateFin}" title="#{bundle.EditPlanPreventifItemTitle_dateFin}"  showOn="button"/>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_responsable}" for="responsable" />
+                                    <p:selectOneMenu id="responsable" value="#{planPreventifController.planPreventifItem.responsable}" >
+                                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                                       var="responsableItem"
+                                                       itemValue="#{responsableItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_description}" for="description" />
+                                    <p:inputText id="description" value="#{planPreventifController.planPreventifItem.description}" title="#{bundle.CreatePlanPreventifItemTitle_description}" />
+
+                                    <p:commandButton actionListener="#{planPreventifController.add()}" value="#{bundle.Save}" update=":PlanPreventifItemListForm:datalist,:growl" />
+
+                                </p:panelGrid>
+                            </h:panelGroup>
+                        </h:form>
+                    </p:panel>
+                </div>
+                <div class="ui-g-6">
+                    <p:panel header="PLAN CATEGORIE LIST">
+                        <h:form id="PlanPreventifItemListForm">
+                            <p:dataTable id="datalist" value="#{planPreventifController.planPreventifItems}" var="item"
+                                         selectionMode="single" selection="#{planPreventifItemController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.categorieEquipement.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPlanPreventifItemTitle_categorieEquipement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.categorieEquipement}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPlanPreventifItemTitle_dateDepart}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateDepart}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPlanPreventifItemTitle_dateFin}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateFin}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPlanPreventifItemTitle_responsable}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.responsable}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPlanPreventifItemTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{planPreventifController.save()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+
+                </div>
+            </div>
+        </ui:define>
     </ui:composition>
 </html>

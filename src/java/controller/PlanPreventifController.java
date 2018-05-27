@@ -1,11 +1,13 @@
 package controller;
 
 import bean.PlanPreventif;
+import bean.PlanPreventifItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.PlanPreventifFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,10 +30,59 @@ public class PlanPreventifController implements Serializable {
     private List<PlanPreventif> items = null;
     private PlanPreventif selected;
 
+    @EJB
+    private service.PlanPreventifItemFacade planPreventifItemFacade;
+    private PlanPreventifItem planPreventifItem;
+    private List<PlanPreventifItem> planPreventifItems;
+
+    public void findByPlanPreventif(PlanPreventif planPreventif) {
+        getSelected().setPlanPreventifItems(planPreventifItemFacade.findByPlanPreventif(planPreventif));
+    }
+
+    public void add() {
+        planPreventifItemFacade.add(getPlanPreventifItem(), getPlanPreventifItems());
+    }
+
+    public void save() {
+        ejbFacade.save(getSelected(), getPlanPreventifItems());
+        initAttribute();
+    }
+
+    private void initAttribute() {
+        setSelected(null);
+        setPlanPreventifItem(null);
+        setPlanPreventifItems(null);
+    }
+
+    public PlanPreventifItem getPlanPreventifItem() {
+        if (planPreventifItem == null) {
+            planPreventifItem = new PlanPreventifItem();
+        }
+        return planPreventifItem;
+    }
+
+    public void setPlanPreventifItem(PlanPreventifItem planPreventifItem) {
+        this.planPreventifItem = planPreventifItem;
+    }
+
+    public List<PlanPreventifItem> getPlanPreventifItems() {
+        if (planPreventifItems == null) {
+            planPreventifItems = new ArrayList();
+        }
+        return planPreventifItems;
+    }
+
+    public void setPlanPreventifItems(List<PlanPreventifItem> planPreventifItems) {
+        this.planPreventifItems = planPreventifItems;
+    }
+
     public PlanPreventifController() {
     }
 
     public PlanPreventif getSelected() {
+        if (selected == null) {
+            selected = new PlanPreventif();
+        }
         return selected;
     }
 
@@ -160,6 +211,14 @@ public class PlanPreventifController implements Serializable {
             }
         }
 
+    }
+
+    public PlanPreventifFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(PlanPreventifFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
     }
 
 }
