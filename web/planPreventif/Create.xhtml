@@ -16,10 +16,10 @@
         <ui:define name="body">
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p:panel header="INFO PLAN">
+                    <p:panel header="INFO PLAN" style="margin-top:20px;">
                         <h:form id="PlanPreventifCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="9" rendered="#{planPreventifController.selected != null}">
+                                <p:panelGrid columns="9" rendered="#{planPreventifController.selected != null}" style="border:none;">
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
                                     <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />
@@ -41,10 +41,10 @@
             </div>
             <div class="ui-g">
                 <div class="ui-g-4">
-                    <p:panel header="INFO CATEGORIE PLAN">
+                    <p:panel header="INFO CATEGORIE PLAN" style="margin-top:20px">
                         <h:form id="PlanPreventifItemCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="2" rendered="#{planPreventifController.planPreventifItem != null}">
+                                <p:panelGrid columns="2" rendered="#{planPreventifController.planPreventifItem != null}" style="border:none;">
 
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_categorieEquipement}" for="categorieEquipement" />
                                     <p:selectOneMenu id="categorieEquipement" value="#{planPreventifController.planPreventifItem.categorieEquipement}" >
@@ -73,7 +73,7 @@
                     </p:panel>
                 </div>
                 <div class="ui-g-8">
-                    <p:panel header="PLAN CATEGORIE LIST">
+                    <p:panel header="PLAN CATEGORIE LIST" style="margin-top:20px">
                         <h:form id="PlanPreventifItemListForm">
                             <p:dataTable id="datalist" value="#{planPreventifController.planPreventifItems}" var="item"
                                          selectionMode="single" selection="#{planPreventifItemController.selected}"

@@ -36,7 +36,13 @@ public class PlanPreventifController implements Serializable {
     private List<PlanPreventifItem> planPreventifItems;
 
     public void findByPlanPreventif(PlanPreventif planPreventif) {
-        getSelected().setPlanPreventifItems(planPreventifItemFacade.findByPlanPreventif(planPreventif));
+        planPreventifItems = (planPreventifItemFacade.findByPlanPreventif(planPreventif));
+    }
+
+    public void remove(PlanPreventif planPreventif) {
+        ejbFacade.remove(planPreventif);
+        planPreventifItems=null;
+        getItems().remove(getItems().indexOf(planPreventif));
     }
 
     public void add() {
