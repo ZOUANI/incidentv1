@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Dim 27 Mai 2018 à 19:36
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.4.24
+-- Client: 127.0.0.1
+-- Généré le: Dim 27 Mai 2018 à 19:27
+-- Version du serveur: 5.5.27-log
+-- Version de PHP: 5.4.6
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `incidentv1`
+-- Base de données: `incidentv1`
 --
 
 -- --------------------------------------------------------
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 INSERT INTO `employee` (`ID`, `EMAIL`, `NOM`, `PRENOM`, `TEL`, `ENTITEADMINISTRATIVE_ID`) VALUES
-('@ocp.ma', 'boutlane', 'BOUTLANE ', 'YOUSSEF ', '06 67 50 23 77', NULL),
+('@ocp.ma', 'boutlane', 'BOUTLANE ', 'YOUSSEF ', '06 67 50 23 77', 25),
 ('AE165 118', 'zidani@ocp.ma', 'ZIDANI ', 'MAYSSAE ', '06 56 62 08 44', NULL),
 ('AE165018', 'maimoun@ocp.ma', 'MAIMOUNI ', 'AIMANE', '06 87 63 02 39', NULL),
 ('AI177184', 'hmamed@ocp.ma', 'HMAMED ', 'HABIBA', '06 68 02 02 31', NULL),
@@ -288,6 +288,14 @@ CREATE TABLE IF NOT EXISTS `incident` (
   KEY `FK_INCIDENT_TYPEINCIDENT_ID` (`TYPEINCIDENT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `incident`
+--
+
+INSERT INTO `incident` (`ID`, `DATEINCIDENT`, `DATEVALIDATION`, `DESCRIPTION`, `ETAT`, `EMPLOYEEDECLARANT_ID`, `TYPEINCIDENT_ID`, `VALIDATEUR_ID`) VALUES
+(1, '2018-05-02', NULL, 'écran bleu', 1, 'AE165 118', 118, NULL),
+(2, '2018-05-09', NULL, 'panne RAM', 1, 'AI177184', 117, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -370,6 +378,13 @@ CREATE TABLE IF NOT EXISTS `sequence` (
   `SEQ_COUNT` decimal(38,0) DEFAULT NULL,
   PRIMARY KEY (`SEQ_NAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `sequence`
+--
+
+INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
+('SEQ_GEN', '50');
 
 -- --------------------------------------------------------
 
@@ -484,8 +499,8 @@ CREATE TABLE IF NOT EXISTS `typeincident` (
 --
 
 INSERT INTO `typeincident` (`ID`, `LIBELLE`) VALUES
-(117, 'panne'),
-(118, 'degradation');
+(117, 'Panne'),
+(118, 'Dégradation');
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
