@@ -21,7 +21,7 @@
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_email}" for="email" />
                         <p:inputText id="email" value="#{employeeController.selected.email}" title="#{bundle.CreateEmployeeTitle_email}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_entiteAdministrative}" for="entiteAdministrative" />
-                        <p:selectOneMenu id="entiteAdministrative" value="#{employeeController.selected.entiteAdministrative}" >
+                        <p:selectOneMenu id="entiteAdministrative" value="#{employeeController.selected.entiteAdministrative==null}" >
                             <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
                                            itemValue="#{entiteAdministrativeItem}"
                                            itemLabel="#{entiteAdministrativeItem.nom}"/>
