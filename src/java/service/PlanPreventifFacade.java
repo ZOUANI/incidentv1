@@ -29,7 +29,7 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
 
     @Override
     public void create(PlanPreventif planPreventif) {
-        planPreventif.setId(generateId("id"));
+        planPreventif.setId(generateId("PlanPreventif", "id"));
         super.create(planPreventif);
     }
 
@@ -37,6 +37,13 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
         create(planPreventif);
         planPreventifItemFacade.save(planPreventif, planPreventifItems);
     }
+
+    @Override
+    public void remove(PlanPreventif planPreventif) {
+        planPreventifItemFacade.removeByPlanPreventif(planPreventif);
+        super.remove(planPreventif);
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -45,5 +52,5 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
     public PlanPreventifFacade() {
         super(PlanPreventif.class);
     }
-    
+
 }

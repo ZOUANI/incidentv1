@@ -30,6 +30,10 @@ public class PlanPreventifItemFacade extends AbstractFacade<PlanPreventifItem> {
         return em.createQuery("SELECT item FROM PlanPreventifItem item WHERE item.planPreventif.id='" + planPreventif.getId() + "'").getResultList();
     }
 
+    public void removeByPlanPreventif(PlanPreventif planPreventif) {
+        em.createQuery("DELETE FROM  PlanPreventifItem item WHERE item.planPreventif.id='" + planPreventif.getId() + "'").executeUpdate();
+    }
+
     public void add(PlanPreventifItem planPreventifItem, List<PlanPreventifItem> planPreventifItems) {
         planPreventifItems.add(clone(planPreventifItem));
     }

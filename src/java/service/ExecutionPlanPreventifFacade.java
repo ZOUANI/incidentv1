@@ -28,7 +28,7 @@ public class ExecutionPlanPreventifFacade extends AbstractFacade<ExecutionPlanPr
 
     @Override
     public void create(ExecutionPlanPreventif executionPlanPreventif) {
-        executionPlanPreventif.setId(generateId("id"));
+        executionPlanPreventif.setId(generateId("ExecutionPlanPreventif","id"));
         super.create(executionPlanPreventif);
     }
 

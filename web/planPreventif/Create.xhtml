@@ -16,10 +16,10 @@
         <ui:define name="body">
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p:panel header="INFO PLAN">
+                    <p:panel header="INFO PLAN" style="margin-top:20px;">
                         <h:form id="PlanPreventifCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="8" rendered="#{planPreventifController.selected != null}">
+                                <p:panelGrid columns="10" rendered="#{planPreventifController.selected != null}" style="border:none;">
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
                                     <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />
@@ -32,6 +32,8 @@
                                     </p:selectOneMenu>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_description}" for="description" />
                                     <p:inputText id="description" value="#{planPreventifController.selected.description}" title="#{bundle.CreatePlanPreventifTitle_description}" />
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="SAVE" actionListener="#{planPreventifController.save()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
+                                    <p:commandButton id="resetButton" icon="ui-icon-pencil"   value="RESET" actionListener="#{planPreventifController.reset()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
                                 </p:panelGrid>
                             </h:panelGroup>
                         </h:form>
@@ -39,11 +41,11 @@
                 </div>
             </div>
             <div class="ui-g">
-                <div class="ui-g-6">
-                    <p:panel header="INFO CATEGORIE PLAN">
+                <div class="ui-g-4">
+                    <p:panel header="INFO CATEGORIE PLAN" style="margin-top:20px">
                         <h:form id="PlanPreventifItemCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="2" rendered="#{planPreventifController.planPreventifItem != null}">
+                                <p:panelGrid columns="2" rendered="#{planPreventifController.planPreventifItem != null}" style="border:none;">
 
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_categorieEquipement}" for="categorieEquipement" />
                                     <p:selectOneMenu id="categorieEquipement" value="#{planPreventifController.planPreventifItem.categorieEquipement}" >
@@ -64,15 +66,15 @@
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_description}" for="description" />
                                     <p:inputText id="description" value="#{planPreventifController.planPreventifItem.description}" title="#{bundle.CreatePlanPreventifItemTitle_description}" />
 
-                                    <p:commandButton actionListener="#{planPreventifController.add()}" value="#{bundle.Save}" update=":PlanPreventifItemListForm:datalist,:growl" />
+                                    <p:commandButton actionListener="#{planPreventifController.add()}" icon="ui-icon-plus" value="ADD" update=":PlanPreventifItemListForm:datalist,:growl" />
 
                                 </p:panelGrid>
                             </h:panelGroup>
                         </h:form>
                     </p:panel>
                 </div>
-                <div class="ui-g-6">
-                    <p:panel header="PLAN CATEGORIE LIST">
+                <div class="ui-g-8">
+                    <p:panel header="PLAN CATEGORIE LIST" style="margin-top:20px">
                         <h:form id="PlanPreventifItemListForm">
                             <p:dataTable id="datalist" value="#{planPreventifController.planPreventifItems}" var="item"
                                          selectionMode="single" selection="#{planPreventifItemController.selected}"
@@ -116,9 +118,7 @@
                                     <h:outputText value="#{item.description}"/>
                                 </p:column>
 
-                                <f:facet name="footer">
-                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{planPreventifController.save()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
-                                </f:facet>
+
                             </p:dataTable>
                         </h:form>
                     </p:panel>

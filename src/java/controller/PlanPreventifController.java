@@ -36,7 +36,16 @@ public class PlanPreventifController implements Serializable {
     private List<PlanPreventifItem> planPreventifItems;
 
     public void findByPlanPreventif(PlanPreventif planPreventif) {
-        getSelected().setPlanPreventifItems(planPreventifItemFacade.findByPlanPreventif(planPreventif));
+        planPreventifItems = (planPreventifItemFacade.findByPlanPreventif(planPreventif));
+    }
+
+    public void remove(PlanPreventif planPreventif) {
+        ejbFacade.remove(planPreventif);
+        planPreventifItems = null;
+        int index = getItems().indexOf(planPreventif);
+        if (index != -1) {
+            getItems().remove(index);
+        }
     }
 
     public void add() {
@@ -45,6 +54,10 @@ public class PlanPreventifController implements Serializable {
 
     public void save() {
         ejbFacade.save(getSelected(), getPlanPreventifItems());
+        initAttribute();
+    }
+
+    public void reset() {
         initAttribute();
     }
 
@@ -126,9 +139,7 @@ public class PlanPreventifController implements Serializable {
     }
 
     public List<PlanPreventif> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
 

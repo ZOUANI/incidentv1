@@ -28,7 +28,7 @@ public class TraitementIncidentFacade extends AbstractFacade<TraitementIncident>
 
     @Override
     public void create(TraitementIncident traitementIncident) {
-        traitementIncident.setId(generateId("id"));
+        traitementIncident.setId(generateId("TraitementIncident","id"));
         super.create(traitementIncident);
     }
 
