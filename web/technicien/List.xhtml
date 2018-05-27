@@ -57,12 +57,6 @@
                             </f:facet>
                             <h:outputText value="#{item.entiteAdministrative}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTechnicienTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{technicienController.prepareCreate}" update=":TechnicienCreateForm" oncomplete="PF('TechnicienCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TechnicienViewForm" oncomplete="PF('TechnicienViewDialog').show()" disabled="#{empty technicienController.selected}"/>

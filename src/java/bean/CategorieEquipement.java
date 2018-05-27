@@ -22,13 +22,13 @@ public class CategorieEquipement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long libelle;
+    private String libelle;
 
-    public Long getLibelle() {
+    public String getLibelle() {
         return libelle;
     }
 
-    public void setLibelle(Long libelle) {
+    public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
 
@@ -62,7 +62,9 @@ public class CategorieEquipement implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.CategorieEquipement[ id=" + id + " ]";
+        return libelle;
     }
+
+  
 
 }

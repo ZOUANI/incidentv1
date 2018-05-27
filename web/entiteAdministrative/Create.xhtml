@@ -20,19 +20,22 @@
                         <p:selectOneMenu id="typeEntiteAdministrative" value="#{entiteAdministrativeController.selected.typeEntiteAdministrative}" >
                             <f:selectItems value="#{typeEntiteAdministrativeController.itemsAvailableSelectOne}"
                                            var="typeEntiteAdministrativeItem"
-                                           itemValue="#{typeEntiteAdministrativeItem}"/>
+                                           itemValue="#{typeEntiteAdministrativeItem}"
+                                           itemLabel="#{typeEntiteAdministrativeItem.libelle}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateEntiteAdministrativeLabel_chef}" for="chef" />
                         <p:selectOneMenu id="chef" value="#{entiteAdministrativeController.selected.chef}" >
                             <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
                                            var="chefItem"
-                                           itemValue="#{chefItem}"/>
+                                           itemValue="#{chefItem}"
+                                           itemLabel="#{chefItem.nom}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateEntiteAdministrativeLabel_entiteAdministrativeSuperieure}" for="entiteAdministrativeSuperieure" />
                         <p:selectOneMenu id="entiteAdministrativeSuperieure" value="#{entiteAdministrativeController.selected.entiteAdministrativeSuperieure}" >
                             <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
                                            var="entiteAdministrativeSuperieureItem"
-                                           itemValue="#{entiteAdministrativeSuperieureItem}"/>
+                                           itemValue="#{entiteAdministrativeSuperieureItem}"
+                                           itemLabel="#{entiteAdministrativeSuperieureItem.nom}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{entiteAdministrativeController.create}" value="#{bundle.Save}" update="display,:EntiteAdministrativeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EntiteAdministrativeCreateDialog');"/>

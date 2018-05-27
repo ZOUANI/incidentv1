@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEntiteAdministrativeTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEntiteAdministrativeTitle_nom}"/>
                             </f:facet>
                             <h:outputText value="#{item.nom}"/>
@@ -43,19 +37,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEntiteAdministrativeTitle_typeEntiteAdministrative}"/>
                             </f:facet>
-                            <h:outputText value="#{item.typeEntiteAdministrative}"/>
+                            <h:outputText value="#{item.typeEntiteAdministrative.libelle}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEntiteAdministrativeTitle_chef}"/>
                             </f:facet>
-                            <h:outputText value="#{item.chef}"/>
+                            <h:outputText value="#{item.chef.nom}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEntiteAdministrativeTitle_entiteAdministrativeSuperieure}"/>
                             </f:facet>
-                            <h:outputText value="#{item.entiteAdministrativeSuperieure}"/>
+                            <h:outputText value="#{item.entiteAdministrativeSuperieure==null?'-----------':item.entiteAdministrativeSuperieure.nom}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{entiteAdministrativeController.prepareCreate}" update=":EntiteAdministrativeCreateForm" oncomplete="PF('EntiteAdministrativeCreateDialog').show()"/>

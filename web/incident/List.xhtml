@@ -39,13 +39,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentTitle_etat}"/>
                             </f:facet>
-                            <h:outputText value="#{item.etat}"/>
+                            <h:outputText value="#{item.etat==1?'En Cours':itm.etat==2?'Traite':'Non Traite'}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentTitle_typeIncident}"/>
                             </f:facet>
-                            <h:outputText value="#{item.typeIncident}"/>
+                            <h:outputText value="#{item.typeIncident.libelle}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -57,13 +57,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentTitle_validateur}"/>
                             </f:facet>
-                            <h:outputText value="#{item.validateur}"/>
+                            <h:outputText value="#{item.validateur==null?'---------':item.validateur.nom}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentTitle_dateValidation}"/>
                             </f:facet>
-                            <h:outputText value="#{item.dateValidation}">
+                            <h:outputText value="#{item.dateValidation==null?'----------':item.dateValidation}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
                         </p:column>
@@ -73,12 +73,7 @@
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{incidentController.prepareCreate}" update=":IncidentCreateForm" oncomplete="PF('IncidentCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IncidentViewForm" oncomplete="PF('IncidentViewDialog').show()" disabled="#{empty incidentController.selected}"/>

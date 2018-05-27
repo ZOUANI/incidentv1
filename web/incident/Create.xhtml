@@ -14,33 +14,39 @@
                     <p:panelGrid columns="2" rendered="#{incidentController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_dateIncident}" for="dateIncident" />
                         <p:calendar id="dateIncident" pattern="MM/dd/yyyy" value="#{incidentController.selected.dateIncident}" title="#{bundle.EditIncidentTitle_dateIncident}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_etat}" for="etat" />
-                        <p:inputText id="etat" value="#{incidentController.selected.etat}" title="#{bundle.CreateIncidentTitle_etat}" />
+                        <p:selectOneMenu id="etat" value="#{incidentController.selected.etat}" >
+                            <f:selectItem itemValue="0" itemLabel="--SELECT--"></f:selectItem>
+                            <f:selectItem itemValue="1" itemLabel="En Cours"></f:selectItem>
+                            <f:selectItem itemValue="2" itemLabel="Traite"></f:selectItem>
+                            <f:selectItem itemValue="3" itemLabel="Non Traite"></f:selectItem>
+                          
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_typeIncident}" for="typeIncident" />
                         <p:selectOneMenu id="typeIncident" value="#{incidentController.selected.typeIncident}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                             <f:selectItems value="#{typeIncidentController.itemsAvailableSelectOne}"
                                            var="typeIncidentItem"
-                                           itemValue="#{typeIncidentItem}"/>
+                                           itemValue="#{typeIncidentItem}"
+                                           itemLabel="#{typeIncidentItem.libelle}"
+                                           />
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_employeeDeclarant}" for="employeeDeclarant" />
                         <p:selectOneMenu id="employeeDeclarant" value="#{incidentController.selected.employeeDeclarant}" >
+                             <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                             <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
                                            var="employeeDeclarantItem"
-                                           itemValue="#{employeeDeclarantItem}"/>
+                                           itemValue="#{employeeDeclarantItem}"
+                                           itemLabel="#{employeeDeclarantItem.nom}"
+                                           />
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateIncidentLabel_validateur}" for="validateur" />
-                        <p:selectOneMenu id="validateur" value="#{incidentController.selected.validateur}" >
-                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
-                                           var="validateurItem"
-                                           itemValue="#{validateurItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateIncidentLabel_dateValidation}" for="dateValidation" />
-                        <p:calendar id="dateValidation" pattern="MM/dd/yyyy HH:mm:ss" value="#{incidentController.selected.dateValidation}" title="#{bundle.EditIncidentTitle_dateValidation}"  showOn="button"/>
+                        
+                        
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_description}" for="description" />
                         <p:inputText id="description" value="#{incidentController.selected.description}" title="#{bundle.CreateIncidentTitle_description}" />
-                        <p:outputLabel value="#{bundle.CreateIncidentLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{incidentController.selected.id}" title="#{bundle.CreateIncidentTitle_id}" />
-                    </p:panelGrid>
+                        
+                          </p:panelGrid>
                     <p:commandButton actionListener="#{incidentController.create}" value="#{bundle.Save}" update="display,:IncidentListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncidentCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="IncidentCreateDialog.hide()"/>
                 </h:panelGroup>
