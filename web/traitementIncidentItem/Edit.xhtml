@@ -19,6 +19,13 @@
                                            var="equipementItem"
                                            itemValue="#{equipementItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_traitementIncident}" for="traitementIncident" />
+                        <p:selectOneMenu id="traitementIncident" value="#{traitementIncidentItemController.selected.traitementIncident}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traitementIncidentController.itemsAvailableSelectOne}"
+                                           var="traitementIncidentItem"
+                                           itemValue="#{traitementIncidentItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditTraitementIncidentItemLabel_technicien}" for="technicien" />
                         <p:selectOneMenu id="technicien" value="#{traitementIncidentItemController.selected.technicien}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

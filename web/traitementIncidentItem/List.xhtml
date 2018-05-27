@@ -35,6 +35,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_traitementIncident}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traitementIncident}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_technicien}"/>
                             </f:facet>
                             <h:outputText value="#{item.technicien}"/>

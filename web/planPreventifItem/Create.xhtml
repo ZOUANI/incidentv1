@@ -12,6 +12,12 @@
             <h:form id="PlanPreventifItemCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{planPreventifItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_planPreventif}" for="planPreventif" />
+                        <p:selectOneMenu id="planPreventif" value="#{planPreventifItemController.selected.planPreventif}" >
+                            <f:selectItems value="#{planPreventifController.itemsAvailableSelectOne}"
+                                           var="planPreventifItem"
+                                           itemValue="#{planPreventifItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_categorieEquipement}" for="categorieEquipement" />
                         <p:selectOneMenu id="categorieEquipement" value="#{planPreventifItemController.selected.categorieEquipement}" >
                             <f:selectItems value="#{categorieEquipementController.itemsAvailableSelectOne}"

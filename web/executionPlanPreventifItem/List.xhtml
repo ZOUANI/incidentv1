@@ -35,6 +35,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_executionPlanPreventif}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.executionPlanPreventif}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_dateDepart}"/>
                             </f:facet>
                             <h:outputText value="#{item.dateDepart}">

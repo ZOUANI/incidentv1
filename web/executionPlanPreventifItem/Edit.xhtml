@@ -19,6 +19,13 @@
                                            var="equipementItem"
                                            itemValue="#{equipementItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditExecutionPlanPreventifItemLabel_executionPlanPreventif}" for="executionPlanPreventif" />
+                        <p:selectOneMenu id="executionPlanPreventif" value="#{executionPlanPreventifItemController.selected.executionPlanPreventif}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{executionPlanPreventifController.itemsAvailableSelectOne}"
+                                           var="executionPlanPreventifItem"
+                                           itemValue="#{executionPlanPreventifItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditExecutionPlanPreventifItemLabel_dateDepart}" for="dateDepart" />
                         <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{executionPlanPreventifItemController.selected.dateDepart}" title="#{bundle.EditExecutionPlanPreventifItemTitle_dateDepart}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditExecutionPlanPreventifItemLabel_dateFin}" for="dateFin" />

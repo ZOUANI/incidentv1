@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{traitementIncidentItemController.selected != null}">
                         <h:outputText value="#{bundle.ViewTraitementIncidentItemLabel_equipement}"/>
                         <h:outputText value="#{traitementIncidentItemController.selected.equipement}" title="#{bundle.ViewTraitementIncidentItemTitle_equipement}"/>
+                        <h:outputText value="#{bundle.ViewTraitementIncidentItemLabel_traitementIncident}"/>
+                        <h:outputText value="#{traitementIncidentItemController.selected.traitementIncident}" title="#{bundle.ViewTraitementIncidentItemTitle_traitementIncident}"/>
                         <h:outputText value="#{bundle.ViewTraitementIncidentItemLabel_technicien}"/>
                         <h:outputText value="#{traitementIncidentItemController.selected.technicien}" title="#{bundle.ViewTraitementIncidentItemTitle_technicien}"/>
                         <h:outputText value="#{bundle.ViewTraitementIncidentItemLabel_dateTraitement}"/>

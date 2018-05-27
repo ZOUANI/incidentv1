@@ -12,6 +12,8 @@
             <h:form id="PlanPreventifItemViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{planPreventifItemController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlanPreventifItemLabel_planPreventif}"/>
+                        <h:outputText value="#{planPreventifItemController.selected.planPreventif}" title="#{bundle.ViewPlanPreventifItemTitle_planPreventif}"/>
                         <h:outputText value="#{bundle.ViewPlanPreventifItemLabel_categorieEquipement}"/>
                         <h:outputText value="#{planPreventifItemController.selected.categorieEquipement}" title="#{bundle.ViewPlanPreventifItemTitle_categorieEquipement}"/>
                         <h:outputText value="#{bundle.ViewPlanPreventifItemLabel_dateDepart}"/>

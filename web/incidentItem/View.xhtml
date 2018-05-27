@@ -12,6 +12,8 @@
             <h:form id="IncidentItemViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{incidentItemController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIncidentItemLabel_incident}"/>
+                        <h:outputText value="#{incidentItemController.selected.incident}" title="#{bundle.ViewIncidentItemTitle_incident}"/>
                         <h:outputText value="#{bundle.ViewIncidentItemLabel_equipement}"/>
                         <h:outputText value="#{incidentItemController.selected.equipement}" title="#{bundle.ViewIncidentItemTitle_equipement}"/>
                         <h:outputText value="#{bundle.ViewIncidentItemLabel_degreUrgence}"/>

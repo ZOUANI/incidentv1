@@ -12,6 +12,13 @@
             <h:form id="IncidentItemEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{incidentItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditIncidentItemLabel_incident}" for="incident" />
+                        <p:selectOneMenu id="incident" value="#{incidentItemController.selected.incident}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{incidentController.itemsAvailableSelectOne}"
+                                           var="incidentItem"
+                                           itemValue="#{incidentItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditIncidentItemLabel_equipement}" for="equipement" />
                         <p:selectOneMenu id="equipement" value="#{incidentItemController.selected.equipement}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
