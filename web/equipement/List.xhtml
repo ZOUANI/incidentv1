@@ -37,20 +37,15 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEquipementTitle_categorieEquipement}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categorieEquipement}"/>
+                            <h:outputText value="#{item.categorieEquipement.libelle}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEquipementTitle_fournisseur}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fournisseur}"/>
+                            <h:outputText value="#{item.fournisseur.nom}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEquipementTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{equipementController.prepareCreate}" update=":EquipementCreateForm" oncomplete="PF('EquipementCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EquipementViewForm" oncomplete="PF('EquipementViewDialog').show()" disabled="#{empty equipementController.selected}"/>

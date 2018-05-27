@@ -19,14 +19,16 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{categorieEquipementController.itemsAvailableSelectOne}"
                                            var="categorieEquipementItem"
-                                           itemValue="#{categorieEquipementItem}"/>
+                                           itemValue="#{categorieEquipementItem}"
+                                           itemLabel="#{categorieEquipementItem.libelle}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEquipementLabel_fournisseur}" for="fournisseur" />
                         <p:selectOneMenu id="fournisseur" value="#{equipementController.selected.fournisseur}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{fournisseurController.itemsAvailableSelectOne}"
                                            var="fournisseurItem"
-                                           itemValue="#{fournisseurItem}"/>
+                                           itemValue="#{fournisseurItem}"
+                                           itemLabel="#{fournisseurItem.nom}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEquipementLabel_id}" for="id" />
                         <p:inputText id="id" value="#{equipementController.selected.id}" title="#{bundle.EditEquipementTitle_id}" />

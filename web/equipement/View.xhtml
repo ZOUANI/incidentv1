@@ -17,10 +17,8 @@
                         <h:outputText value="#{bundle.ViewEquipementLabel_categorieEquipement}"/>
                         <h:outputText value="#{equipementController.selected.categorieEquipement}" title="#{bundle.ViewEquipementTitle_categorieEquipement}"/>
                         <h:outputText value="#{bundle.ViewEquipementLabel_fournisseur}"/>
-                        <h:outputText value="#{equipementController.selected.fournisseur}" title="#{bundle.ViewEquipementTitle_fournisseur}"/>
-                        <h:outputText value="#{bundle.ViewEquipementLabel_id}"/>
-                        <h:outputText value="#{equipementController.selected.id}" title="#{bundle.ViewEquipementTitle_id}"/>
-                    </p:panelGrid>
+                        <h:outputText value="#{equipementController.selected.fournisseur.nom}" title="#{bundle.ViewEquipementTitle_fournisseur}"/>
+                       </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EquipementViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
