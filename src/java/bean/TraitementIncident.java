@@ -106,7 +106,7 @@ public class TraitementIncident implements Serializable {
 
     @Override
     public String toString() {
-        return ;
+        return "bean.TraitementIncident[ id=" + id + " ]";
     }
 
 }
