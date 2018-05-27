@@ -81,7 +81,7 @@ public class Equipement implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Equipement[ id=" + id + " ]";
+        return libelle;
     }
 
 }
