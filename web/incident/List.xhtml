@@ -16,7 +16,7 @@
         <ui:define name="body">
             <div class="ui-g">
                 <div class="ui-g-6">
-                    <p:panel header="INFO PLAN" style="margin-top:20px">
+                    <p:panel header="INFO INCIDENT" style="margin-top:20px">
                         <h:form id="IncidentListForm">
                             <p:dataTable id="datalist" value="#{incidentController.items}" var="item"
                                          selectionMode="single" selection="#{incidentController.selected}"
@@ -86,7 +86,7 @@
                 </div>
                 <div class="ui-g-6">
                     <h:form id="IncidentItemListForm">
-                        <p:panel header="#{bundle.ListIncidentItemTitle}">
+                        <p:panel header="PRODUIT INCIDENT">
                             <p:dataTable id="datalist" value="#{incidentController.incidentItems}" var="item"
                                          selectionMode="single" selection="#{incidentItemController.selected}"
                                          paginator="true"
@@ -138,7 +138,7 @@
             <div class="ui-g">
                 <div class="ui-g-6">
                     <h:form id="TraitementIncidentListForm">
-                        <p:panel header="#{bundle.ListTraitementIncidentTitle}">
+                        <p:panel header="TRAITEMENT INCIDENT">
                             <p:dataTable id="datalist" value="#{incidentController.traitementIncidents}" var="item"
                                          selectionMode="single" selection="#{traitementIncidentController.selected}"
                                          paginator="true"
@@ -186,7 +186,7 @@
                 </div>
                 <div class="ui-g-6">
                     <h:form id="TraitementIncidentItemListForm">
-                        <p:panel header="#{bundle.ListTraitementIncidentItemTitle}">
+                        <p:panel header="DETAIL PRODUIT TRAITEMENT INCIDENT">
                             <p:dataTable id="datalist" value="#{incidentController.traitementIncidentItems}" var="item"
                                          selectionMode="single" selection="#{traitementIncidentItemController.selected}"
                                          paginator="true"
