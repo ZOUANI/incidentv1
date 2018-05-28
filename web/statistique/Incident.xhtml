@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Statistique | Incident"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="StatListForm">
+                <p:fieldset id="StatField" legend="Critere de recherche" style="margin-bottom:20px" >
+                    <p:panelGrid columns="10">
+
+                        <p:outputLabel value="Annee" for="annee" />
+                        <p:inputText id="annee" value="#{chartController.annee}" title="Annee" />
+
+
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_etat}" for="etat" />
+                        <p:selectOneMenu id="etat" value="#{chartController.etatIncident}" >
+                            <f:selectItem itemValue="0" itemLabel="--SELECT--"></f:selectItem>
+                            <f:selectItem itemValue="1" itemLabel="En Cours"></f:selectItem>
+                            <f:selectItem itemValue="2" itemLabel="Traite"></f:selectItem>
+                            <f:selectItem itemValue="3" itemLabel="Non Traite"></f:selectItem>
+
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_typeIncident}" for="typeIncident" />
+                        <p:selectOneMenu id="typeIncident" value="#{chartController.typeIncident}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
+                            <f:selectItems value="#{typeIncidentController.itemsAvailableSelectOne}"
+                                           var="typeIncidentItem"
+                                           itemValue="#{typeIncidentItem}"
+                                           itemLabel="#{typeIncidentItem.libelle}"
+                                           />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIncidentLabel_employeeDeclarant}" for="employeeDeclarant" />
+                        <p:selectOneMenu id="employeeDeclarant" value="#{chartController.employeeDeclarant}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="employeeDeclarantItem"
+                                           itemValue="#{employeeDeclarantItem}"
+                                           itemLabel="#{employeeDeclarantItem.nom}"
+                                           />
+                        </p:selectOneMenu>
+
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="Afficher" actionListener="#{chartController.createBarModels()}" update=":StatListForm" />
+
+                    </p:panelGrid>
+                </p:fieldset>
+                <p:chart id="barChart" type="bar"  model="#{chartController.barModelIncident}" style="height:430px" />
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

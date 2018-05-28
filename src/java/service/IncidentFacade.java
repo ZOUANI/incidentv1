@@ -5,9 +5,12 @@
  */
 package service;
 
-import bean.Incident;
+import bean.Employee;
 import bean.Incident;
 import bean.IncidentItem;
+import bean.TypeIncident;
+import controller.util.SearchUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,6 +29,34 @@ public class IncidentFacade extends AbstractFacade<Incident> {
 
     @EJB
     IncidentItemFacade incidentItemFacade;
+
+    public List<Long> findByCriteria(int annee, Integer etat, TypeIncident typeIncident, Employee employeeDeclarant) {
+        List<Long> res = new ArrayList();
+        for (int i = 1; i <= 12; i++) {
+            res.add(findByCriteria(i, annee, etat, typeIncident, employeeDeclarant));
+        }
+        return res;
+    }
+
+    public Long findByCriteria(int mois, int annee, Integer etat, TypeIncident typeIncident, Employee employeeDeclarant) {
+        String moisConversion = mois + "";
+        if (mois < 10) {
+            moisConversion = "0" + mois;
+        }
+        String query = "SELECT COUNT(item.id) FROM Incident item WHERE item.dateIncident LIKE '" + annee + "-" + moisConversion + "-%'";
+        query += SearchUtil.addConstraint("item", "etat", "=", etat);
+        if (typeIncident != null) {
+            query += SearchUtil.addConstraint("item", "typeIncident", "=", typeIncident.getId());
+        }
+        if (employeeDeclarant != null) {
+            query += SearchUtil.addConstraint("item", "employeeDeclarant", "=", employeeDeclarant.getId());
+        }
+        List<Long> res = em.createQuery(query).getResultList();
+        if (res == null || res.isEmpty() || res.get(0) == null) {
+            return 0L;
+        }
+        return res.get(0);
+    }
 
     @Override
     public void create(Incident incident) {
