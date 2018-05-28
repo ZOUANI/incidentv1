@@ -2,11 +2,14 @@ package controller;
 
 import bean.Incident;
 import bean.IncidentItem;
+import bean.Incident;
+import bean.IncidentItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.IncidentFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,6 +31,66 @@ public class IncidentController implements Serializable {
     private service.IncidentFacade ejbFacade;
     private List<Incident> items = null;
     private Incident selected;
+    
+     @EJB
+    private service.IncidentItemFacade incidentItemFacade;
+    private IncidentItem incidentItem;
+    private List<IncidentItem> incidentItems;
+
+    public void findByIncident(Incident incident) {
+        incidentItems = (incidentItemFacade.findByIncident(incident));
+    }
+
+    public void remove(Incident incident) {
+        ejbFacade.remove(incident);
+        incidentItems = null;
+        int index = getItems().indexOf(incident);
+        if (index != -1) {
+            getItems().remove(index);
+        }
+    }
+
+    public void add() {
+        incidentItemFacade.add(getIncidentItem(), getIncidentItems());
+    }
+
+    public void save() {
+        ejbFacade.save(getSelected(), getIncidentItems());
+        initAttribute();
+    }
+
+    public void reset() {
+        initAttribute();
+    }
+
+    private void initAttribute() {
+        setSelected(null);
+        setIncidentItem(null);
+        setIncidentItems(null);
+    }
+
+    public IncidentItem getIncidentItem() {
+        if (incidentItem == null) {
+            incidentItem = new IncidentItem();
+        }
+        return incidentItem;
+    }
+
+    public void setIncidentItem(IncidentItem incidentItem) {
+        this.incidentItem = incidentItem;
+    }
+
+    public List<IncidentItem> getIncidentItems() {
+        if (incidentItems == null) {
+            incidentItems = new ArrayList();
+        }
+        return incidentItems;
+    }
+
+    public void setIncidentItems(List<IncidentItem> incidentItems) {
+        this.incidentItems = incidentItems;
+    }
+
 
     public IncidentFacade getEjbFacade() {
         return ejbFacade;

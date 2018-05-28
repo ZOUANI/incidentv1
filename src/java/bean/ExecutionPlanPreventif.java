@@ -33,9 +33,19 @@ public class ExecutionPlanPreventif implements Serializable {
     private Date dateFin;
     @ManyToOne
     private Employee responsable;
+    @ManyToOne
+    private PlanPreventif planPreventif;
     private String description;
     @OneToMany(mappedBy = "executionPlanPreventif")
     private List<ExecutionPlanPreventifItem> executionPlanPreventifItems;
+
+    public PlanPreventif getPlanPreventif() {
+        return planPreventif;
+    }
+
+    public void setPlanPreventif(PlanPreventif planPreventif) {
+        this.planPreventif = planPreventif;
+    }
 
     public List<ExecutionPlanPreventifItem> getExecutionPlanPreventifItems() {
         return executionPlanPreventifItems;
@@ -45,7 +55,6 @@ public class ExecutionPlanPreventif implements Serializable {
         this.executionPlanPreventifItems = executionPlanPreventifItems;
     }
 
-    
     public Date getDateDepart() {
         return dateDepart;
     }

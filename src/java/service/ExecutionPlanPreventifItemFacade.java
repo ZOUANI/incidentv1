@@ -29,7 +29,7 @@ public class ExecutionPlanPreventifItemFacade extends AbstractFacade<ExecutionPl
         }
     }
 
-    public List<ExecutionPlanPreventif> findByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
+    public List<ExecutionPlanPreventifItem> findByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
         return em.createQuery("SELECT item FROM ExecutionPlanPreventifItem item WHERE item.executionPlanPreventif.id='" + executionPlanPreventif.getId() + "'").getResultList();
     }
 

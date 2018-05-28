@@ -1,11 +1,13 @@
 package controller;
 
 import bean.TraitementIncident;
+import bean.TraitementIncidentItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.TraitementIncidentFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,10 +30,72 @@ public class TraitementIncidentController implements Serializable {
     private List<TraitementIncident> items = null;
     private TraitementIncident selected;
 
+    @EJB
+    private service.TraitementIncidentItemFacade traitementIncidentItemFacade;
+    private TraitementIncidentItem traitementIncidentItem;
+    private List<TraitementIncidentItem> traitementIncidentItems;
+
+    public void findByTraitementIncident(TraitementIncident traitementIncident) {
+        traitementIncidentItems = (traitementIncidentItemFacade.findByTraitementIncident(traitementIncident));
+    }
+
+    public void remove(TraitementIncident traitementIncident) {
+        ejbFacade.remove(traitementIncident);
+        traitementIncidentItems = null;
+        int index = getItems().indexOf(traitementIncident);
+        if (index != -1) {
+            getItems().remove(index);
+        }
+    }
+
+    public void add() {
+        traitementIncidentItemFacade.add(getTraitementIncidentItem(), getTraitementIncidentItems());
+    }
+
+    public void save() {
+        ejbFacade.save(getSelected(), getTraitementIncidentItems());
+        initAttribute();
+    }
+
+    public void reset() {
+        initAttribute();
+    }
+
+    private void initAttribute() {
+        setSelected(null);
+        setTraitementIncidentItem(null);
+        setTraitementIncidentItems(null);
+    }
+
+    public TraitementIncidentItem getTraitementIncidentItem() {
+        if (traitementIncidentItem == null) {
+            traitementIncidentItem = new TraitementIncidentItem();
+        }
+        return traitementIncidentItem;
+    }
+
+    public void setTraitementIncidentItem(TraitementIncidentItem traitementIncidentItem) {
+        this.traitementIncidentItem = traitementIncidentItem;
+    }
+
+    public List<TraitementIncidentItem> getTraitementIncidentItems() {
+        if (traitementIncidentItems == null) {
+            traitementIncidentItems = new ArrayList();
+        }
+        return traitementIncidentItems;
+    }
+
+    public void setTraitementIncidentItems(List<TraitementIncidentItem> traitementIncidentItems) {
+        this.traitementIncidentItems = traitementIncidentItems;
+    }
+
     public TraitementIncidentController() {
     }
 
     public TraitementIncident getSelected() {
+        if (selected == null) {
+            selected = new TraitementIncident();
+        }
         return selected;
     }
 

@@ -1,11 +1,12 @@
 package controller;
 
 import bean.ExecutionPlanPreventif;
+import bean.ExecutionPlanPreventifItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
-import service.ExecutionPlanPreventifFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import service.ExecutionPlanPreventifFacade;
+import service.ExecutionPlanPreventifItemFacade;
 
 @Named("executionPlanPreventifController")
 @SessionScoped
@@ -28,10 +31,72 @@ public class ExecutionPlanPreventifController implements Serializable {
     private List<ExecutionPlanPreventif> items = null;
     private ExecutionPlanPreventif selected;
 
+    @EJB
+    private service.ExecutionPlanPreventifItemFacade executionPlanPreventifItemFacade;
+    private ExecutionPlanPreventifItem executionPlanPreventifItem;
+    private List<ExecutionPlanPreventifItem> executionPlanPreventifItems;
+
+    public void findByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
+        executionPlanPreventifItems = (executionPlanPreventifItemFacade.findByExecutionPlanPreventif(executionPlanPreventif));
+    }
+
+    public void remove(ExecutionPlanPreventif executionPlanPreventif) {
+        ejbFacade.remove(executionPlanPreventif);
+        executionPlanPreventifItems = null;
+        int index = getItems().indexOf(executionPlanPreventif);
+        if (index != -1) {
+            getItems().remove(index);
+        }
+    }
+
+    public void add() {
+        executionPlanPreventifItemFacade.add(getExecutionPlanPreventifItem(), getExecutionPlanPreventifItems());
+    }
+
+    public void save() {
+        ejbFacade.save(getSelected(), getExecutionPlanPreventifItems());
+        initAttribute();
+    }
+
+    public void reset() {
+        initAttribute();
+    }
+
+    private void initAttribute() {
+        setSelected(null);
+        setExecutionPlanPreventifItem(null);
+        setExecutionPlanPreventifItems(null);
+    }
+
+    public ExecutionPlanPreventifItem getExecutionPlanPreventifItem() {
+        if (executionPlanPreventifItem == null) {
+            executionPlanPreventifItem = new ExecutionPlanPreventifItem();
+        }
+        return executionPlanPreventifItem;
+    }
+
+    public void setExecutionPlanPreventifItem(ExecutionPlanPreventifItem executionPlanPreventifItem) {
+        this.executionPlanPreventifItem = executionPlanPreventifItem;
+    }
+
+    public List<ExecutionPlanPreventifItem> getExecutionPlanPreventifItems() {
+        if (executionPlanPreventifItems == null) {
+            executionPlanPreventifItems = new ArrayList();
+        }
+        return executionPlanPreventifItems;
+    }
+
+    public void setExecutionPlanPreventifItems(List<ExecutionPlanPreventifItem> executionPlanPreventifItems) {
+        this.executionPlanPreventifItems = executionPlanPreventifItems;
+    }
+
     public ExecutionPlanPreventifController() {
     }
 
     public ExecutionPlanPreventif getSelected() {
+        if (selected == null) {
+            selected = new ExecutionPlanPreventif();
+        }
         return selected;
     }
 
@@ -43,10 +108,6 @@ public class ExecutionPlanPreventifController implements Serializable {
     }
 
     protected void initializeEmbeddableKey() {
-    }
-
-    private ExecutionPlanPreventifFacade getFacade() {
-        return ejbFacade;
     }
 
     public ExecutionPlanPreventif prepareCreate() {
@@ -75,9 +136,7 @@ public class ExecutionPlanPreventifController implements Serializable {
     }
 
     public List<ExecutionPlanPreventif> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getEjbFacade().findAll();
         return items;
     }
 
@@ -86,9 +145,9 @@ public class ExecutionPlanPreventifController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    getEjbFacade().edit(selected);
                 } else {
-                    getFacade().remove(selected);
+                    getEjbFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -110,15 +169,15 @@ public class ExecutionPlanPreventifController implements Serializable {
     }
 
     public ExecutionPlanPreventif getExecutionPlanPreventif(java.lang.Long id) {
-        return getFacade().find(id);
+        return getEjbFacade().find(id);
     }
 
     public List<ExecutionPlanPreventif> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+        return getEjbFacade().findAll();
     }
 
     public List<ExecutionPlanPreventif> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+        return getEjbFacade().findAll();
     }
 
     @FacesConverter(forClass = ExecutionPlanPreventif.class)
@@ -160,6 +219,22 @@ public class ExecutionPlanPreventifController implements Serializable {
             }
         }
 
+    }
+
+    public ExecutionPlanPreventifFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(ExecutionPlanPreventifFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public ExecutionPlanPreventifItemFacade getExecutionPlanPreventifItemFacade() {
+        return executionPlanPreventifItemFacade;
+    }
+
+    public void setExecutionPlanPreventifItemFacade(ExecutionPlanPreventifItemFacade executionPlanPreventifItemFacade) {
+        this.executionPlanPreventifItemFacade = executionPlanPreventifItemFacade;
     }
 
 }

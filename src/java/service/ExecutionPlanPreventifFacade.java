@@ -7,6 +7,8 @@ package service;
 
 import bean.ExecutionPlanPreventif;
 import bean.ExecutionPlanPreventifItem;
+import static bean.ExecutionPlanPreventifItem_.executionPlanPreventif;
+import bean.PlanPreventif;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,9 +28,13 @@ public class ExecutionPlanPreventifFacade extends AbstractFacade<ExecutionPlanPr
     @EJB
     ExecutionPlanPreventifItemFacade executionPlanPreventifItemFacade;
 
+    public List<ExecutionPlanPreventif> findByPlanPreventif(PlanPreventif planPreventif) {
+        return em.createQuery("SELECT item FROM ExecutionPlanPreventif item WHERE item.planPreventif.id='" + planPreventif.getId() + "'").getResultList();
+    }
+
     @Override
     public void create(ExecutionPlanPreventif executionPlanPreventif) {
-        executionPlanPreventif.setId(generateId("ExecutionPlanPreventif","id"));
+        executionPlanPreventif.setId(generateId("ExecutionPlanPreventif", "id"));
         super.create(executionPlanPreventif);
     }
 

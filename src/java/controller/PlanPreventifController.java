@@ -1,5 +1,7 @@
 package controller;
 
+import bean.ExecutionPlanPreventif;
+import bean.ExecutionPlanPreventifItem;
 import bean.PlanPreventif;
 import bean.PlanPreventifItem;
 import controller.util.JsfUtil;
@@ -20,6 +22,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import service.ExecutionPlanPreventifFacade;
+import service.PlanPreventifItemFacade;
 
 @Named("planPreventifController")
 @SessionScoped
@@ -34,14 +38,36 @@ public class PlanPreventifController implements Serializable {
     private service.PlanPreventifItemFacade planPreventifItemFacade;
     private PlanPreventifItem planPreventifItem;
     private List<PlanPreventifItem> planPreventifItems;
+    @EJB
+    private service.ExecutionPlanPreventifItemFacade executionPlanPreventifItemFacade;
+    @EJB
+    private service.ExecutionPlanPreventifFacade executionPlanPreventifFacade;
+    private List<ExecutionPlanPreventif> executionPlanPreventifs;
+    private List<ExecutionPlanPreventifItem> executionPlanPreventifItems;
 
     public void findByPlanPreventif(PlanPreventif planPreventif) {
         planPreventifItems = (planPreventifItemFacade.findByPlanPreventif(planPreventif));
+        executionPlanPreventifs = (executionPlanPreventifFacade.findByPlanPreventif(planPreventif));
+    }
+
+    public void findByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
+        executionPlanPreventifItems = (executionPlanPreventifItemFacade.findByExecutionPlanPreventif(executionPlanPreventif));
+    }
+
+    public void removeByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
+        executionPlanPreventifFacade.remove(executionPlanPreventif);
+        executionPlanPreventifItems = null;
+        int index = getItems().indexOf(executionPlanPreventif);
+        if (index != -1) {
+            getItems().remove(index);
+        }
     }
 
     public void remove(PlanPreventif planPreventif) {
         ejbFacade.remove(planPreventif);
         planPreventifItems = null;
+        executionPlanPreventifs = null;
+        executionPlanPreventifItems = null;
         int index = getItems().indexOf(planPreventif);
         if (index != -1) {
             getItems().remove(index);
@@ -65,6 +91,44 @@ public class PlanPreventifController implements Serializable {
         setSelected(null);
         setPlanPreventifItem(null);
         setPlanPreventifItems(null);
+    }
+
+    public PlanPreventifItemFacade getPlanPreventifItemFacade() {
+        return planPreventifItemFacade;
+    }
+
+    public void setPlanPreventifItemFacade(PlanPreventifItemFacade planPreventifItemFacade) {
+        this.planPreventifItemFacade = planPreventifItemFacade;
+    }
+
+    public ExecutionPlanPreventifFacade getExecutionPlanPreventifFacade() {
+        return executionPlanPreventifFacade;
+    }
+
+    public void setExecutionPlanPreventifFacade(ExecutionPlanPreventifFacade executionPlanPreventifFacade) {
+        this.executionPlanPreventifFacade = executionPlanPreventifFacade;
+    }
+
+    public List<ExecutionPlanPreventif> getExecutionPlanPreventifs() {
+        if (executionPlanPreventifs == null) {
+            executionPlanPreventifs = new ArrayList();
+        }
+        return executionPlanPreventifs;
+    }
+
+    public void setExecutionPlanPreventifs(List<ExecutionPlanPreventif> executionPlanPreventifs) {
+        this.executionPlanPreventifs = executionPlanPreventifs;
+    }
+
+    public List<ExecutionPlanPreventifItem> getExecutionPlanPreventifItems() {
+        if (executionPlanPreventifs == null) {
+            executionPlanPreventifs = new ArrayList();
+        }
+        return executionPlanPreventifItems;
+    }
+
+    public void setExecutionPlanPreventifItems(List<ExecutionPlanPreventifItem> executionPlanPreventifItems) {
+        this.executionPlanPreventifItems = executionPlanPreventifItems;
     }
 
     public PlanPreventifItem getPlanPreventifItem() {

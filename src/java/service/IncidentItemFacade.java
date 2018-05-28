@@ -6,7 +6,8 @@
 package service;
 
 import bean.IncidentItem;
-import bean.PlanPreventifItem;
+import bean.Incident;
+import bean.IncidentItem;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,6 +22,21 @@ public class IncidentItemFacade extends AbstractFacade<IncidentItem> {
 
     @PersistenceContext(unitName = "incidentv1PU")
     private EntityManager em;
+
+    public void save(Incident incident, List<IncidentItem> incidentItems) {
+        for (IncidentItem incidentItem : incidentItems) {
+            incidentItem.setIncident(incident);
+            create(incidentItem);
+        }
+    }
+
+    public List<IncidentItem> findByIncident(Incident incident) {
+        return em.createQuery("SELECT item FROM IncidentItem item WHERE item.incident.id='" + incident.getId() + "'").getResultList();
+    }
+
+    public void removeByIncident(Incident incident) {
+        em.createQuery("DELETE FROM  IncidentItem item WHERE item.incident.id='" + incident.getId() + "'").executeUpdate();
+    }
 
     public void add(IncidentItem incidentItem, List<IncidentItem> incidentItems) {
         incidentItems.add(clone(incidentItem));

@@ -1,11 +1,16 @@
 package controller;
 
+import bean.Incident;
+import bean.IncidentItem;
+import bean.TraitementIncident;
+import bean.TraitementIncidentItem;
 import bean.TraitementIncidentItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.TraitementIncidentItemFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,7 +32,7 @@ public class TraitementIncidentItemController implements Serializable {
     private service.TraitementIncidentItemFacade ejbFacade;
     private List<TraitementIncidentItem> items = null;
     private TraitementIncidentItem selected;
-
+    
     public TraitementIncidentItemController() {
     }
 

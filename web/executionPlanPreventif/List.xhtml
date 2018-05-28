@@ -10,70 +10,120 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListPlanPreventifTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ExecutionPlanPreventifListForm">
-                <p:panel header="#{bundle.ListExecutionPlanPreventifTitle}">
-                    <p:dataTable id="datalist" value="#{executionPlanPreventifController.items}" var="item"
-                                 selectionMode="single" selection="#{executionPlanPreventifController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:panel header="INFO EXECUTION PLAN" style="margin-top:20px">
+                        <h:form id="ExecutionPlanPreventifListForm">
+                            <p:dataTable id="datalist" value="#{executionPlanPreventifController.items}" var="item"
+                                         selectionMode="single" selection="#{executionPlanPreventifController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_dateDepart}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateDepart}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_dateFin}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateFin}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_responsable}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.responsable}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="PlanPreventif"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.planPreventif.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Action"/>
+                                    </f:facet>
+                                    <p:commandButton id="detailButton" icon="ui-icon-plus" actionListener="#{executionPlanPreventifController.findByExecutionPlanPreventif(item)}" update=":ExecutionPlanPreventifItemListForm:datalist" />
+                                    <p:commandButton id="deleteButton" icon="ui-icon-trash" actionListener="#{executionPlanPreventifController.remove(item)}" update=":ExecutionPlanPreventifItemListForm:datalist , :ExecutionPlanPreventifListForm:datalist" />
+                                </p:column>
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                </div>
+                <div class="ui-g-6">
+                    <h:form id="ExecutionPlanPreventifItemListForm">
+                        <p:panel header="DETAIL EXECUTION PLAN" style="margin-top:20px">
+                            <p:dataTable id="datalist" value="#{executionPlanPreventifController.executionPlanPreventifItems}" var="item"
+                                         selectionMode="single" selection="#{executionPlanPreventifItemController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_dateDepart}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateDepart}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_dateFin}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateFin}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_responsable}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.responsable}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{executionPlanPreventifController.prepareCreate}" update=":ExecutionPlanPreventifCreateForm" oncomplete="PF('ExecutionPlanPreventifCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ExecutionPlanPreventifViewForm" oncomplete="PF('ExecutionPlanPreventifViewDialog').show()" disabled="#{empty executionPlanPreventifController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ExecutionPlanPreventifEditForm" oncomplete="PF('ExecutionPlanPreventifEditDialog').show()" disabled="#{empty executionPlanPreventifController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{executionPlanPreventifController.destroy}" update=":growl,datalist" disabled="#{empty executionPlanPreventifController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_equipement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.equipement}"/>
+                                </p:column>
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_dateDepart}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateDepart}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_dateFin}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateFin}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_responsable}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.responsable}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+
         </ui:define>
     </ui:composition>
 

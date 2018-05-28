@@ -31,7 +31,7 @@ public class TraitementIncidentItemFacade extends AbstractFacade<TraitementIncid
         }
     }
 
-    public List<TraitementIncident> findByTraitementIncident(TraitementIncident traitementIncident) {
+    public List<TraitementIncidentItem> findByTraitementIncident(TraitementIncident traitementIncident) {
         return em.createQuery("SELECT item FROM TraitementIncidentItem item WHERE item.traitementIncident.id='" + traitementIncident.getId() + "'").getResultList();
     }
     public void add(TraitementIncidentItem traitementIncidentItem, List<TraitementIncidentItem> traitementIncidentItems) {
