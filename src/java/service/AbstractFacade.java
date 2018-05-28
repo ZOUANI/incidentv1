@@ -44,8 +44,8 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
-    public Long generateId(String idName) {
-        String requete = "SELECT max(item." + idName + ") FROM " + entityClass.getSimpleName() + " item";
+    public Long generateId(String beanName, String idName) {
+        String requete = "SELECT max(item." + idName + ") FROM " + beanName + " item";
         List<Long> maxId = getEntityManager().createQuery(requete).getResultList();
         if (maxId == null || maxId.isEmpty() || maxId.get(0) == null) {
             return 1L;

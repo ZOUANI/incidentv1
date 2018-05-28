@@ -19,7 +19,7 @@
                     <p:panel header="INFO PLAN" style="margin-top:20px;">
                         <h:form id="PlanPreventifCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="9" rendered="#{planPreventifController.selected != null}" style="border:none;">
+                                <p:panelGrid columns="10" rendered="#{planPreventifController.selected != null}" style="border:none;">
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
                                     <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />
@@ -32,7 +32,8 @@
                                     </p:selectOneMenu>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_description}" for="description" />
                                     <p:inputText id="description" value="#{planPreventifController.selected.description}" title="#{bundle.CreatePlanPreventifTitle_description}" />
-                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="ADD ALL" actionListener="#{planPreventifController.save()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="SAVE" actionListener="#{planPreventifController.save()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
+                                    <p:commandButton id="resetButton" icon="ui-icon-pencil"   value="RESET" actionListener="#{planPreventifController.reset()}" update=":PlanPreventifItemCreateForm, :PlanPreventifCreateForm , :PlanPreventifItemListForm:datalist" />
                                 </p:panelGrid>
                             </h:panelGroup>
                         </h:form>

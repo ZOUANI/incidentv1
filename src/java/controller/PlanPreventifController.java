@@ -41,8 +41,11 @@ public class PlanPreventifController implements Serializable {
 
     public void remove(PlanPreventif planPreventif) {
         ejbFacade.remove(planPreventif);
-        planPreventifItems=null;
-        getItems().remove(getItems().indexOf(planPreventif));
+        planPreventifItems = null;
+        int index = getItems().indexOf(planPreventif);
+        if (index != -1) {
+            getItems().remove(index);
+        }
     }
 
     public void add() {
@@ -51,6 +54,10 @@ public class PlanPreventifController implements Serializable {
 
     public void save() {
         ejbFacade.save(getSelected(), getPlanPreventifItems());
+        initAttribute();
+    }
+
+    public void reset() {
         initAttribute();
     }
 
@@ -132,9 +139,7 @@ public class PlanPreventifController implements Serializable {
     }
 
     public List<PlanPreventif> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
 

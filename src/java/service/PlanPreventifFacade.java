@@ -29,7 +29,7 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
 
     @Override
     public void create(PlanPreventif planPreventif) {
-        planPreventif.setId(generateId("id"));
+        planPreventif.setId(generateId("PlanPreventif", "id"));
         super.create(planPreventif);
     }
 
