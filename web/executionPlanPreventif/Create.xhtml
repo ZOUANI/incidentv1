@@ -82,7 +82,7 @@
                                     <p:outputLabel value="#{bundle.CreateExecutionPlanPreventifItemLabel_description}" for="description" />
                                     <p:inputText id="description" value="#{executionPlanPreventifController.executionPlanPreventifItem.description}" title="#{bundle.CreateExecutionPlanPreventifItemTitle_description}" />
                                 </p:panelGrid>
-                                <p:commandButton actionListener="#{executionPlanPreventifController.add()}" icon="ui-icon-plus" value="ADD" update=":ExecutionPlanPreventifItemListForm:datalist,:growl" />
+                                <p:commandButton actionListener="#{executionPlanPreventifController.add()}" icon="ui-icon-plus" value="ADD" update=":ExecutionPlanPreventifItemListForm:datalist , :growl" />
                             </h:panelGroup>
                         </h:form>
                     </p:panel>

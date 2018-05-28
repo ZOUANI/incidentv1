@@ -10,83 +10,228 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListIncidentTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListPlanPreventifTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="IncidentListForm">
-                <p:panel header="#{bundle.ListIncidentTitle}">
-                    <p:dataTable id="datalist" value="#{incidentController.items}" var="item"
-                                 selectionMode="single" selection="#{incidentController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:panel header="INFO INCIDENT" style="margin-top:20px">
+                        <h:form id="IncidentListForm">
+                            <p:dataTable id="datalist" value="#{incidentController.items}" var="item"
+                                         selectionMode="single" selection="#{incidentController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_dateIncident}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateIncident}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_etat}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.etat==1?'En Cours':itm.etat==2?'Traite':'Non Traite'}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_typeIncident}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.typeIncident.libelle}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_employeeDeclarant}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.employeeDeclarant}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_validateur}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.validateur==null?'---------':item.validateur.nom}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_dateValidation}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateValidation==null?'----------':item.dateValidation}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Action"/>
+                                    </f:facet>
+                                    <p:commandButton id="detailButton" icon="ui-icon-plus" actionListener="#{incidentController.findByIncident(item)}" update=":IncidentItemListForm:datalist , :IncidentListForm:datalist , :TraitementIncidentItemListForm:datalist, :TraitementIncidentListForm:datalist , :TraitementIncidentItemListForm:datalist" />
+                                    <p:commandButton id="deleteButton" icon="ui-icon-trash" actionListener="#{incidentController.remove(item)}" update=":IncidentItemListForm:datalist , :IncidentListForm:datalist , :TraitementIncidentItemListForm:datalist, :TraitementIncidentListForm:datalist, :TraitementIncidentItemListForm:datalist" />
+                                </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_dateIncident}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateIncident}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_etat}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.etat==1?'En Cours':itm.etat==2?'Traite':'Non Traite'}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_typeIncident}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.typeIncident.libelle}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_employeeDeclarant}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.employeeDeclarant}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_validateur}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.validateur==null?'---------':item.validateur.nom}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_dateValidation}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateValidation==null?'----------':item.dateValidation}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </p:column>
-                       
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{incidentController.prepareCreate}" update=":IncidentCreateForm" oncomplete="PF('IncidentCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IncidentViewForm" oncomplete="PF('IncidentViewDialog').show()" disabled="#{empty incidentController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":IncidentEditForm" oncomplete="PF('IncidentEditDialog').show()" disabled="#{empty incidentController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{incidentController.destroy}" update=":growl,datalist" disabled="#{empty incidentController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                </div>
+                <div class="ui-g-6">
+                    <h:form id="IncidentItemListForm">
+                        <p:panel header="PRODUIT INCIDENT">
+                            <p:dataTable id="datalist" value="#{incidentController.incidentItems}" var="item"
+                                         selectionMode="single" selection="#{incidentItemController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentItemTitle_incident}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.incident}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentItemTitle_equipement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.equipement}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentItemTitle_degreUrgence}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.degreUrgence}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentItemTitle_categorieDelai}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.categorieDelai}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListIncidentItemTitle_dateTraitement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateTraitement}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <h:form id="TraitementIncidentListForm">
+                        <p:panel header="TRAITEMENT INCIDENT">
+                            <p:dataTable id="datalist" value="#{incidentController.traitementIncidents}" var="item"
+                                         selectionMode="single" selection="#{traitementIncidentController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentTitle_incident}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.incident.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentTitle_dateTraitement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateTraitement}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentTitle_etat}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.etat}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentTitle_description}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Action"/>
+                                    </f:facet>
+                                    <p:commandButton id="detailButton" icon="ui-icon-plus" actionListener="#{incidentController.findByTraitementIncident(item)}" update=":TraitementIncidentItemListForm:datalist" />
+                                    <p:commandButton id="deleteButton" icon="ui-icon-trash" actionListener="#{incidentController.removeByTraitementIncident(item)}" update=":TraitementIncidentItemListForm:datalist , :TraitementIncidentListForm:datalist" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                </div>
+                <div class="ui-g-6">
+                    <h:form id="TraitementIncidentItemListForm">
+                        <p:panel header="DETAIL PRODUIT TRAITEMENT INCIDENT">
+                            <p:dataTable id="datalist" value="#{incidentController.traitementIncidentItems}" var="item"
+                                         selectionMode="single" selection="#{traitementIncidentItemController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.id}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_equipement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.equipement==null?'---------':item.equipement}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_traitementIncident}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.traitementIncident==null?'---------':item.traitementIncident}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_technicien}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.technicien==null?'---------':item.technicien}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_dateTraitement}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateTraitement}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTraitementIncidentItemTitle_etat}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.etat}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -7,6 +7,11 @@ package service;
 
 import bean.TraitementIncident;
 import bean.TraitementIncidentItem;
+import bean.Incident;
+import bean.IncidentItem;
+import bean.Incident;
+import bean.TraitementIncident;
+import bean.TraitementIncidentItem;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,12 +28,16 @@ public class TraitementIncidentFacade extends AbstractFacade<TraitementIncident>
     @PersistenceContext(unitName = "incidentv1PU")
     private EntityManager em;
 
-    @EJB
+   @EJB
     TraitementIncidentItemFacade traitementIncidentItemFacade;
+
+    public List<TraitementIncident> findByIncident(Incident incident) {
+        return em.createQuery("SELECT item FROM TraitementIncident item WHERE item.incident.id='" + incident.getId() + "'").getResultList();
+    }
 
     @Override
     public void create(TraitementIncident traitementIncident) {
-        traitementIncident.setId(generateId("TraitementIncident","id"));
+        traitementIncident.setId(generateId("TraitementIncident", "id"));
         super.create(traitementIncident);
     }
 
