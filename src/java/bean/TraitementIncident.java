@@ -31,7 +31,7 @@ public class TraitementIncident implements Serializable {
     private Incident incident;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateTraitement;
-    private int etat;// fait, non fait, en cours
+    private String etat;// fait, non fait, en cours
     private String description;
     @OneToMany(mappedBy = "traitementIncident")
     private List<TraitementIncidentItem> traitementIncidentItems;
@@ -64,11 +64,11 @@ public class TraitementIncident implements Serializable {
         this.dateTraitement = dateTraitement;
     }
 
-    public int getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(int etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

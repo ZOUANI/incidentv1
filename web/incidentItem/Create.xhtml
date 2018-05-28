@@ -38,9 +38,7 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateIncidentItemLabel_dateTraitement}" for="dateTraitement" />
                         <p:calendar id="dateTraitement" pattern="MM/dd/yyyy HH:mm:ss" value="#{incidentItemController.selected.dateTraitement}" title="#{bundle.EditIncidentItemTitle_dateTraitement}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateIncidentItemLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{incidentItemController.selected.id}" title="#{bundle.CreateIncidentItemTitle_id}" />
-                    </p:panelGrid>
+                       </p:panelGrid>
                     <p:commandButton actionListener="#{incidentItemController.create}" value="#{bundle.Save}" update="display,:IncidentItemListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncidentItemCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="IncidentItemCreateDialog.hide()"/>
                 </h:panelGroup>

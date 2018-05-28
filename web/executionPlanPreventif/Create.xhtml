@@ -22,9 +22,11 @@
                                 <p:panelGrid columns="8" rendered="#{executionPlanPreventifController.selected != null}">
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifItemLabel_planPreventif}" for="planPreventif" />
                                     <p:selectOneMenu id="planPreventif" value="#{executionPlanPreventifController.selected.planPreventif}" >
+                                        <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                                         <f:selectItems value="#{planPreventifController.itemsAvailableSelectOne}"
                                                        var="planPreventifItem"
-                                                       itemValue="#{planPreventifItem}"/>
+                                                       itemValue="#{planPreventifItem}"
+                                                       itemLabel="#{planPreventifItem.description}"/>
                                     </p:selectOneMenu>
 
                                     <p:outputLabel value="#{bundle.CreateExecutionPlanPreventifLabel_dateDepart}" for="dateDepart" />
@@ -71,9 +73,11 @@
 
                                     <p:outputLabel value="#{bundle.CreateExecutionPlanPreventifItemLabel_responsable}" for="responsable" />
                                     <p:selectOneMenu id="responsable" value="#{executionPlanPreventifController.executionPlanPreventifItem.responsable}" >
+                                        <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
                                         <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
                                                        var="responsableItem"
-                                                       itemValue="#{responsableItem}"/>
+                                                       itemValue="#{responsableItem}"
+                                                       itemLabel="#{responsableItem.nom}"/>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="#{bundle.CreateExecutionPlanPreventifItemLabel_description}" for="description" />
                                     <p:inputText id="description" value="#{executionPlanPreventifController.executionPlanPreventifItem.description}" title="#{bundle.CreateExecutionPlanPreventifItemTitle_description}" />
