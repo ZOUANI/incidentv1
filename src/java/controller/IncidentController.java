@@ -1,5 +1,9 @@
 package controller;
 
+import bean.TraitementIncident;
+import bean.TraitementIncidentItem;
+import bean.Incident;
+import bean.IncidentItem;
 import bean.Incident;
 import bean.IncidentItem;
 import bean.Incident;
@@ -31,19 +35,43 @@ public class IncidentController implements Serializable {
     private service.IncidentFacade ejbFacade;
     private List<Incident> items = null;
     private Incident selected;
-    
-     @EJB
+
+    @EJB
     private service.IncidentItemFacade incidentItemFacade;
     private IncidentItem incidentItem;
     private List<IncidentItem> incidentItems;
 
+    @EJB
+    private service.TraitementIncidentItemFacade traitementIncidentItemFacade;
+    @EJB
+    private service.TraitementIncidentFacade traitementIncidentFacade;
+    private List<TraitementIncident> traitementIncidents;
+    private List<TraitementIncidentItem> traitementIncidentItems;
+
     public void findByIncident(Incident incident) {
         incidentItems = (incidentItemFacade.findByIncident(incident));
+        traitementIncidents = (traitementIncidentFacade.findByIncident(incident));
+        traitementIncidentItems = null;
+    }
+
+    public void findByTraitementIncident(TraitementIncident traitementIncident) {
+        traitementIncidentItems = (traitementIncidentItemFacade.findByTraitementIncident(traitementIncident));
+    }
+
+    public void removeByTraitementIncident(TraitementIncident traitementIncident) {
+        traitementIncidentFacade.remove(traitementIncident);
+        traitementIncidentItems = null;
+        int index = getItems().indexOf(traitementIncident);
+        if (index != -1) {
+            getItems().remove(index);
+        }
     }
 
     public void remove(Incident incident) {
         ejbFacade.remove(incident);
         incidentItems = null;
+        traitementIncidents = null;
+        traitementIncidentItems = null;
         int index = getItems().indexOf(incident);
         if (index != -1) {
             getItems().remove(index);
@@ -91,6 +119,27 @@ public class IncidentController implements Serializable {
         this.incidentItems = incidentItems;
     }
 
+    public List<TraitementIncident> getTraitementIncidents() {
+        if (traitementIncidents == null) {
+            traitementIncidents = new ArrayList();
+        }
+        return traitementIncidents;
+    }
+
+    public void setTraitementIncidents(List<TraitementIncident> traitementIncidents) {
+        this.traitementIncidents = traitementIncidents;
+    }
+
+    public List<TraitementIncidentItem> getTraitementIncidentItems() {
+        if (traitementIncidentItems == null) {
+            traitementIncidentItems = new ArrayList();
+        }
+        return traitementIncidentItems;
+    }
+
+    public void setTraitementIncidentItems(List<TraitementIncidentItem> traitementIncidentItems) {
+        this.traitementIncidentItems = traitementIncidentItems;
+    }
 
     public IncidentFacade getEjbFacade() {
         return ejbFacade;
@@ -104,6 +153,9 @@ public class IncidentController implements Serializable {
     }
 
     public Incident getSelected() {
+        if (selected == null) {
+            selected = new Incident();
+        }
         return selected;
     }
 
@@ -147,9 +199,7 @@ public class IncidentController implements Serializable {
     }
 
     public List<Incident> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
 

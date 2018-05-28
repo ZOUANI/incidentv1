@@ -21,30 +21,33 @@
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
                         <p:submenu label="Plan Preventif">
-                            <p:menuitem value="List PlanPreventif" outcome="/planPreventif/List.xhtml" />
-                            <p:menuitem value="Create PlanPreventif" outcome="/planPreventif/Create.xhtml" />
-                            <p:menuitem value="Create ExecutionPlanPreventif" outcome="/executionPlanPreventif/Create.xhtml" />
-                            <p:menuitem value="List ExecutionPlanPreventif" outcome="/executionPlanPreventif/List.xhtml" />
+                            <p:menuitem value="List" outcome="/planPreventif/List.xhtml" />
+                            <p:menuitem value="Create" outcome="/planPreventif/Create.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Execution Plan Preventif">
+                            <p:menuitem value="List" outcome="/executionPlanPreventif/List.xhtml" />
+                            <p:menuitem value="Create" outcome="/executionPlanPreventif/Create.xhtml" />
                         </p:submenu>
                         <p:submenu label="Incident">
-                            <p:menuitem value="Incident" outcome="/incident/List.xhtml" />
-                            <p:menuitem value="IncidentItem" outcome="/incidentItem/List.xhtml" />
+                            <p:menuitem value="List" outcome="/incident/List.xhtml" />
+                            <p:menuitem value="Create" outcome="/incident/Create.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Traitemlent Incident">
+                            <p:menuitem value="List" outcome="/traitementIncident/List.xhtml" />
+                            <p:menuitem value="Create" outcome="/traitementIncidentItem/Create.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Confuguration Incident">
                             <p:menuitem value="TypeIncident" outcome="/typeIncident/List.xhtml" />
                             <p:menuitem value="CategorieDelai" outcome="/categorieDelai/List.xhtml" />
                             <p:menuitem value="DegreUrgence" outcome="/degreUrgence/List.xhtml" />
                         </p:submenu>
-                        <p:submenu label="Traitemlent Incident">
-                            <p:menuitem value="TraitementIncident" outcome="/traitementIncident/List.xhtml" />
-                            <p:menuitem value="TraitementIncidentItem" outcome="/traitementIncidentItem/List.xhtml" />
 
-                        </p:submenu>
-                        <p:submenu label="Equipement">
+                        <p:submenu label="Configuration Equipement">
                             <p:menuitem value="Equipement" outcome="/equipement/List.xhtml" />
                             <p:menuitem value="CategorieEquipement" outcome="/categorieEquipement/List.xhtml" />
                             <p:menuitem value="Fournisseur" outcome="/fournisseur/List.xhtml" />
                         </p:submenu>
-                        <p:submenu label="Configuration">
-
+                        <p:submenu label="Collaborateur">
                             <p:menuitem value="Employee" outcome="/employee/List.xhtml" />
                             <p:menuitem value="EntiteAdministrative" outcome="/entiteAdministrative/List.xhtml" />
                             <p:menuitem value="Technicien" outcome="/technicien/List.xhtml" />

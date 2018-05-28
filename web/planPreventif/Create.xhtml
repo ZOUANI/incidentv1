@@ -19,7 +19,7 @@
                     <p:panel header="INFO PLAN" style="margin-top:20px;">
                         <h:form id="PlanPreventifCreateForm">
                             <h:panelGroup id="display">
-                                <p:panelGrid columns="10" rendered="#{planPreventifController.selected != null}" style="border:none;">
+                                <p:panelGrid columns="8" rendered="#{planPreventifController.selected != null}" style="border:none;">
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateDepart}" for="dateDepart" />
                                     <p:calendar id="dateDepart" pattern="MM/dd/yyyy" value="#{planPreventifController.selected.dateDepart}" title="#{bundle.EditPlanPreventifTitle_dateDepart}"  showOn="button"/>
                                     <p:outputLabel value="#{bundle.CreatePlanPreventifLabel_dateFin}" for="dateFin" />

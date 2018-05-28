@@ -48,6 +48,7 @@ public class PlanPreventifController implements Serializable {
     public void findByPlanPreventif(PlanPreventif planPreventif) {
         planPreventifItems = (planPreventifItemFacade.findByPlanPreventif(planPreventif));
         executionPlanPreventifs = (executionPlanPreventifFacade.findByPlanPreventif(planPreventif));
+        executionPlanPreventifItems = null;
     }
 
     public void findByExecutionPlanPreventif(ExecutionPlanPreventif executionPlanPreventif) {
@@ -121,8 +122,8 @@ public class PlanPreventifController implements Serializable {
     }
 
     public List<ExecutionPlanPreventifItem> getExecutionPlanPreventifItems() {
-        if (executionPlanPreventifs == null) {
-            executionPlanPreventifs = new ArrayList();
+        if (executionPlanPreventifItems == null) {
+            executionPlanPreventifItems = new ArrayList();
         }
         return executionPlanPreventifItems;
     }
