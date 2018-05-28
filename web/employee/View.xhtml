@@ -12,6 +12,14 @@
             <h:form id="EmployeeViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_login}"/>
+                        <h:outputText value="#{employeeController.selected.login}" title="#{bundle.ViewEmployeeTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_password}"/>
+                        <h:outputText value="#{employeeController.selected.password}" title="#{bundle.ViewEmployeeTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_blocked}"/>
+                        <h:outputText value="#{employeeController.selected.blocked}" title="#{bundle.ViewEmployeeTitle_blocked}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_nbrCnx}"/>
+                        <h:outputText value="#{employeeController.selected.nbrCnx}" title="#{bundle.ViewEmployeeTitle_nbrCnx}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_nom}"/>
                         <h:outputText value="#{employeeController.selected.nom}" title="#{bundle.ViewEmployeeTitle_nom}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_prenom}"/>

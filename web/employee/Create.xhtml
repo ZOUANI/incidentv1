@@ -12,6 +12,14 @@
             <h:form id="EmployeeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{employeeController.selected.login}" title="#{bundle.CreateEmployeeTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{employeeController.selected.password}" title="#{bundle.CreateEmployeeTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_blocked}" for="blocked" />
+                        <p:inputText id="blocked" value="#{employeeController.selected.blocked}" title="#{bundle.CreateEmployeeTitle_blocked}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{employeeController.selected.nbrCnx}" title="#{bundle.CreateEmployeeTitle_nbrCnx}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{employeeController.selected.nom}" title="#{bundle.CreateEmployeeTitle_nom}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_prenom}" for="prenom" />
@@ -20,7 +28,14 @@
                         <p:inputText id="tel" value="#{employeeController.selected.tel}" title="#{bundle.CreateEmployeeTitle_tel}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_email}" for="email" />
                         <p:inputText id="email" value="#{employeeController.selected.email}" title="#{bundle.CreateEmployeeTitle_email}" />
-                        
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_entiteAdministrative}" for="entiteAdministrative" />
+                        <p:selectOneMenu id="entiteAdministrative" value="#{employeeController.selected.entiteAdministrative}" >
+                            <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
+                                           var="entiteAdministrativeItem"
+                                           itemValue="#{entiteAdministrativeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.CreateEmployeeTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployeeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDialog.hide()"/>

@@ -12,6 +12,14 @@
             <h:form id="EmployeeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{employeeController.selected.login}" title="#{bundle.EditEmployeeTitle_login}" />
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{employeeController.selected.password}" title="#{bundle.EditEmployeeTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_blocked}" for="blocked" />
+                        <p:inputText id="blocked" value="#{employeeController.selected.blocked}" title="#{bundle.EditEmployeeTitle_blocked}" />
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{employeeController.selected.nbrCnx}" title="#{bundle.EditEmployeeTitle_nbrCnx}" />
                         <p:outputLabel value="#{bundle.EditEmployeeLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{employeeController.selected.nom}" title="#{bundle.EditEmployeeTitle_nom}" />
                         <p:outputLabel value="#{bundle.EditEmployeeLabel_prenom}" for="prenom" />
@@ -25,10 +33,10 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
                                            var="entiteAdministrativeItem"
-                                           itemValue="#{entiteAdministrativeItem}"
-                                           itemLabel="#{entiteAdministrativeItem.nom}"/>
+                                           itemValue="#{entiteAdministrativeItem}"/>
                         </p:selectOneMenu>
-                       
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.EditEmployeeTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.update}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmployeeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeEditDialog.hide()"/>

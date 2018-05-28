@@ -28,10 +28,19 @@ public class EmployeeController implements Serializable {
     private List<Employee> items = null;
     private Employee selected;
 
+    public void seConnnecter(){
+        int res= ejbFacade.seConnnecter(getSelected());
+        if(res<0){
+            JsfUtil.addErrorMessage("Une erreur d'authentification Merci de bien verifier votre login et password");
+        }
+    }
     public EmployeeController() {
     }
 
     public Employee getSelected() {
+        if(selected==null){
+            selected= new Employee();
+        }
         return selected;
     }
 

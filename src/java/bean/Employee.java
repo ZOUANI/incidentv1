@@ -24,8 +24,56 @@ public class Employee implements Serializable {
     private String prenom;
     private String tel;
     private String email;
+    private String login;
+    private String password;
+    private int blocked;
+    private int nbrCnx;
+    private boolean mdpChanged;
     @ManyToOne
     private EntiteAdministrative entiteAdministrative;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(int blocked) {
+        this.blocked = blocked;
+    }
+
+    public int getNbrCnx() {
+        return nbrCnx;
+    }
+
+    public void setNbrCnx(int nbrCnx) {
+        this.nbrCnx = nbrCnx;
+    }
+
+    public boolean isMdpChanged() {
+        return mdpChanged;
+    }
+
+    public void setMdpChanged(boolean mdpChanged) {
+        this.mdpChanged = mdpChanged;
+    }
+    
+   
+    
 
     public String getNom() {
         return nom;
@@ -66,8 +114,6 @@ public class Employee implements Serializable {
     public void setEntiteAdministrative(EntiteAdministrative entiteAdministrative) {
         this.entiteAdministrative = entiteAdministrative;
     }
-    
-    
 
     public String getId() {
         return id;
@@ -99,7 +145,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return nom+" "+prenom;
+        return nom + " " + prenom;
     }
-    
+
 }
