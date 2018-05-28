@@ -44,13 +44,14 @@ public class IncidentFacade extends AbstractFacade<Incident> {
             moisConversion = "0" + mois;
         }
         String query = "SELECT COUNT(item.id) FROM Incident item WHERE item.dateIncident LIKE '" + annee + "-" + moisConversion + "-%'";
-        query += SearchUtil.addConstraint("item", "etat", "=", etat);
+        //query += SearchUtil.addConstraint("item", "etat", "=", etat);
         if (typeIncident != null) {
             query += SearchUtil.addConstraint("item", "typeIncident", "=", typeIncident.getId());
         }
         if (employeeDeclarant != null) {
             query += SearchUtil.addConstraint("item", "employeeDeclarant", "=", employeeDeclarant.getId());
         }
+        System.out.println(query);
         List<Long> res = em.createQuery(query).getResultList();
         if (res == null || res.isEmpty() || res.get(0) == null) {
             return 0L;
