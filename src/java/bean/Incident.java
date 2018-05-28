@@ -136,7 +136,7 @@ public class Incident implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Incident[ id=" + id + " ]";
+        return description+" "+dateValidation+" "+dateIncident;
     }
 
 }

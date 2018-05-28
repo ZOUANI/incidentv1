@@ -7,7 +7,6 @@ package service;
 
 import bean.ExecutionPlanPreventif;
 import bean.ExecutionPlanPreventifItem;
-import static bean.ExecutionPlanPreventifItem_.executionPlanPreventif;
 import bean.PlanPreventif;
 import java.util.List;
 import javax.ejb.EJB;
