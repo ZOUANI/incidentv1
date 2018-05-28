@@ -16,7 +16,7 @@
         <ui:define name="body">
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p:panel header="INFO PLAN" style="margin-top:20px;">
+                    <p:panel header="INFO INCIDENT" style="margin-top:20px;">
                         <h:form id="IncidentCreateForm">
                             <h:panelGroup id="display">
                                 <p:panelGrid columns="10" rendered="#{incidentController.selected != null}">
@@ -65,7 +65,7 @@
             </div>
             <div class="ui-g">
                 <div class="ui-g-4">
-                    <p:panel header="INFO CATEGORIE PLAN" style="margin-top:20px">
+                    <p:panel header="INFO CATEGORIE INCIDENT" style="margin-top:20px">
                         <h:form id="IncidentItemCreateForm">
                             <h:panelGroup id="display">
                                 <p:panelGrid columns="2" rendered="#{incidentController.incidentItem != null}">
@@ -99,7 +99,7 @@
                     </p:panel>
                 </div>
                 <div class="ui-g-8">
-                    <p:panel header="PLAN CATEGORIE LIST" style="margin-top:20px">
+                    <p:panel header="INCIDENT CATEGORIE LIST" style="margin-top:20px">
                         <h:form id="IncidentItemListForm">
                             <p:panel header="#{bundle.ListIncidentItemTitle}">
                                 <p:dataTable id="datalist" value="#{incidentController.incidentItems}" var="item"
