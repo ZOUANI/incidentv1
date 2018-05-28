@@ -45,8 +45,8 @@ public class ChartController implements Serializable {
         return barModelPlanPreventif;
     }
 
-    private BarChartModel initBarModel() {
-        BarChartModel model = new BarChartModel();
+    private BarChartModel initIncidentBarModel() {
+        barModelIncident = new BarChartModel();
 
         ChartSeries incident = new ChartSeries();
         incident.setLabel("Incident");
@@ -58,26 +58,65 @@ public class ChartController implements Serializable {
         List<Long> incidentStat = (List<Long>) res[0];
         List<Long> traitementStat = (List<Long>) res[0];
         for (int i = 1; i <= 12; i++) {
-            System.out.println("pour mois "+i+" incident ==> "+incidentStat.get(i - 1));
-            System.out.println("pour mois "+i+" traitementStat ==> "+traitementStat.get(i - 1));
+            System.out.println("pour mois " + i + " incident ==> " + incidentStat.get(i - 1));
+            System.out.println("pour mois " + i + " traitementStat ==> " + traitementStat.get(i - 1));
             incident.set("" + i, incidentStat.get(i - 1));
             traitementIncident.set("" + i, traitementStat.get(i - 1));
         }
 
-        model.addSeries(incident);
-        model.addSeries(traitementIncident);
+        barModelIncident.addSeries(incident);
+        barModelIncident.addSeries(traitementIncident);
+        return barModelIncident;
+    }
 
-        return model;
+    private BarChartModel initPlanBarModel() {
+        barModelPlanPreventif = new BarChartModel();
+
+        ChartSeries incident = new ChartSeries();
+        incident.setLabel("Plan");
+
+        ChartSeries traitementIncident = new ChartSeries();
+        traitementIncident.setLabel("Execution Plan");
+
+        Object[] res = statistiqueFacade.findPlanAndExecutionByCriteria(annee, employeeDeclarant);
+        List<Long> planStat = (List<Long>) res[0];
+        List<Long> execStat = (List<Long>) res[0];
+        for (int i = 1; i <= 12; i++) {
+            System.out.println("pour mois " + i + " plan ==> " + planStat.get(i - 1));
+            System.out.println("pour mois " + i + " exec ==> " + execStat.get(i - 1));
+            incident.set("" + i, planStat.get(i - 1));
+            traitementIncident.set("" + i, execStat.get(i - 1));
+        }
+
+        barModelPlanPreventif.addSeries(incident);
+        barModelPlanPreventif.addSeries(traitementIncident);
+        return barModelPlanPreventif;
     }
 
     public void createBarModels() {
-        createBarModel();
+        createIncidentBarModel();
     }
 
-    private void createBarModel() {
-        barModelIncident = initBarModel();
+    private void createIncidentBarModel() {
+        barModelIncident = initIncidentBarModel();
 
         barModelIncident.setTitle("Incident Pour l'annee " + annee);
+        barModelIncident.setLegendPosition("ne");
+
+        Axis xAxis = barModelIncident.getAxis(AxisType.X);
+        xAxis.setLabel("Mois");
+
+        Axis yAxis = barModelIncident.getAxis(AxisType.Y);
+        yAxis.setLabel("Nombre");
+        yAxis.setMin(0);
+        yAxis.setMax(200);
+        initIncidentBarModel();
+    }
+
+    private void createPlanBarModel() {
+        barModelIncident = initPlanBarModel();
+
+        barModelIncident.setTitle("Plan  Pour l'annee " + annee);
         barModelIncident.setLegendPosition("ne");
 
         Axis xAxis = barModelIncident.getAxis(AxisType.X);

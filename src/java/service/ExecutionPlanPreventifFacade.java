@@ -30,7 +30,7 @@ public class ExecutionPlanPreventifFacade extends AbstractFacade<ExecutionPlanPr
 
     @EJB
     ExecutionPlanPreventifItemFacade executionPlanPreventifItemFacade;
-    
+
     public List<Long> findByCriteria(int annee, Employee responsable) {
         List<Long> res = new ArrayList();
         for (int i = 1; i <= 12; i++) {
@@ -39,11 +39,12 @@ public class ExecutionPlanPreventifFacade extends AbstractFacade<ExecutionPlanPr
         return res;
     }
 
-    public Long findByCriteria(int mois, int annee,  Employee responsable) {
-        String query = "SELECT COUNT(item.id) FROM ExecutionPlanPreventif item WHERE dateDepart LIKE '" + annee + "-" + mois + "-%'";
+    public Long findByCriteria(int mois, int annee, Employee responsable) {
+        String query = "SELECT COUNT(item.id) FROM ExecutionPlanPreventif item WHERE item.dateDepart LIKE '" + annee + "-" + mois + "-%'";
         if (responsable != null) {
-            query += SearchUtil.addConstraint("item", "responsable", "=", responsable.getId());
+            query += SearchUtil.addConstraint("item", "responsable.id", "=", responsable.getId());
         }
+        System.out.println(query);
         List<Long> res = em.createQuery(query).getResultList();
         if (res == null || res.isEmpty() || res.get(0) == null) {
             return 0L;

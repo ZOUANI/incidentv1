@@ -44,12 +44,13 @@ public class TraitementIncidentFacade extends AbstractFacade<TraitementIncident>
     }
 
     public Long findByCriteria(int mois, int annee, Integer etat) {
-         String moisConversion = mois + "";
+        String moisConversion = mois + "";
         if (mois < 10) {
             moisConversion = "0" + mois;
         }
-        String query = "SELECT COUNT(item.id) FROM TraitementIncident item WHERE dateTraitement LIKE '" + annee + "-" + moisConversion + "-%'";
+        String query = "SELECT COUNT(item.id) FROM TraitementIncident item WHERE item.dateTraitement LIKE '" + annee + "-" + moisConversion + "-%'";
         query += SearchUtil.addConstraint("item", "etat", "=", etat);
+        System.out.println(query);
         List<Long> res = em.createQuery(query).getResultList();
         if (res == null || res.isEmpty() || res.get(0) == null) {
             return 0L;

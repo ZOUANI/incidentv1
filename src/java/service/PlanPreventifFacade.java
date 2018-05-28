@@ -44,10 +44,11 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
         if (mois < 10) {
             moisConversion = "0" + mois;
         }
-        String query = "SELECT COUNT(item.id) FROM PlanPreventif item WHERE dateDepart LIKE '" + annee + "-" + moisConversion + "-%'";
+        String query = "SELECT COUNT(item.id) FROM PlanPreventif item WHERE item.dateDepart LIKE '" + annee + "-" + moisConversion + "-%'";
         if (responsable != null) {
-            query += SearchUtil.addConstraint("item", "responsable", "=", responsable.getId());
+            query += SearchUtil.addConstraint("item", "responsable.id", "=", responsable.getId());
         }
+        System.out.println(query);
         List<Long> res = em.createQuery(query).getResultList();
         if (res == null || res.isEmpty() || res.get(0) == null) {
             return 0L;
