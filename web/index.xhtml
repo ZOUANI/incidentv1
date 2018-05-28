@@ -2,42 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
     <h:head>
-        <title>Menu Principale</title>
+        <title>Authentification</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
         <h:outputStylesheet name="css/loginStyle.css"/>
+        <link rel="shortcut icon" href="../resources/image/logo-1.png" type="image/png" sizes="16x22"/>
+        <link rel="stylesheet" href="resources/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css" />
     </h:head>
-    <h:body class="bodyLogin">
-        <center>
-            <div style="background-image: url(resources/image/logo-1.png); width:413px; height:84px; "></div>
-            <br/><br/><br/><br/><br/>
-        </center>
+    <!--#/{employeeController.isConnected()}-->
+    <h:body class="bodyLogin" style="background: url(resources/image/background-banner.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;" >
+        <img src="resources/image/ede.png" style="margin-top: 65px;"/>
+        <h3 style="text-align: center">Bitte loggen Sie sich an</h3>
         <div class="login-card">
-            <img src="resources/img/employee.png" style="border-radius: 100%; width: 100px; height: auto"/><br/>
+            <img src="resources/image/user.png" style="border-radius: 100%; width: 100px; height: auto"/><br/>
 
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-                <h:panelGrid columns="1" cellpadding="0">
-                    <h:outputLabel style="font-size: 11px;" for="employeename" value="Employeename:" />
-                    <p:inputText id="employeename" value="#{employeeController.selected.login}" style="width: 100%" required="true" label="employeename" placeholder="Saisissez votre login" />
-
-                    <h:outputLabel style="font-size: 11px;" for="password" value="Password:" />
-                    <p:password id="password" value="#{employeeController.selected.password}" style="width: 100%" required="true" label="password" placeholder="Saisissez votre mot de passe" />
+                <h:panelGrid columns="2" cellpadding="5"  styleClass="align-center ede-color">
+                    <i class="fa fa-user icon-login"></i>
+                    <p:inputText id="username" value="#{employeeController.selected.login}" required="false" label="username" placeholder="Geben Sie Ihre Benutzername an" />
+                    <i class="fa fa-key icon-login "></i>
+                    <p:password id="password" value="#{employeeController.selected.password}" required="false" label="password" placeholder="Passwort angeben" />
 
                     <f:facet name="footer">
-                        <center>
-                            <p:commandButton value="LOGIN" style="width: 100%; text-align: center;font-size: 14px;
-                                             font-family: 'Arial', sans-serif;font-weight: 700;height: 36px;padding: 0 8px;
-                                             width: 100%;display: block;margin-bottom: 10px;position: relative;"
-                                             update="growl" action="#{employeeController.seConnnecter()}"/>
-                        </center>
+                        <p:commandButton value="Anmeldung" style=" font-size: 14px;
+                                         font-family: 'Arial', sans-serif;font-weight: 700;height: 36px;
+                                         width: 100%;display: block;margin-bottom: 10px;position: relative;margin-left: 25px;"
+                                         update="growl" action="#{employeeController.seConnnecter()}"/>
                     </f:facet>  
                 </h:panelGrid>
             </h:form>
         </div>
-    </h:body>
 
+
+    </h:body>
 
 </html>

@@ -48,11 +48,16 @@
                             <p:menuitem value="CategorieEquipement" outcome="/categorieEquipement/List.xhtml" />
                             <p:menuitem value="Fournisseur" outcome="/fournisseur/List.xhtml" />
                         </p:submenu>
-                        <p:submenu label="Collaborateur" icon="ui-icon-user">
+                        <p:submenu label="Collaborateur" icon="ui-icon-group">
                             <p:menuitem value="Employee" outcome="/employee/List.xhtml" />
                             <p:menuitem value="EntiteAdministrative" outcome="/entiteAdministrative/List.xhtml" />
                             <p:menuitem value="Technicien" outcome="/technicien/List.xhtml" />
                             <p:menuitem value="TypeEntiteAdministrative" outcome="/typeEntiteAdministrative/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Statistique" icon="ui-icon-group">
+                            <p:menuitem value="Incident" outcome="/statistique/Incident.xhtml" />
+                            <p:menuitem value="PlanPreventif" outcome="/statistique/PlanPreventif.xhtml" />
+                            
                         </p:submenu>
                     </p:menubar>
                 </h:form>

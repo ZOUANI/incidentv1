@@ -6,6 +6,7 @@
 package service;
 
 import bean.Employee;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,24 +34,25 @@ public class EmployeeFacade extends AbstractFacade<Employee> {
         if (employee == null || employee.getLogin() == null) {
             return -5;
         } else {
-            Employee loadedEmployee = find(employee.getLogin());
+            Employee loadedEmployee = findByLogin(employee.getLogin());
             if (loadedEmployee == null) {
                 return -4;
             } else if (!loadedEmployee.getPassword().equals((employee.getPassword()))) {
-                if (loadedEmployee.getNbrCnx() < 3) {
-                    loadedEmployee.setNbrCnx(loadedEmployee.getNbrCnx() + 1);
-                } else if (loadedEmployee.getNbrCnx() >= 3) {
-                    loadedEmployee.setBlocked(1);
-                }
                 return -3;
             } else if (loadedEmployee.getBlocked() == 1) {
                 return -2;
             } else {
-                loadedEmployee.setNbrCnx(0);
-                employee.setPassword(null);
                 return 1;
             }
         }
+    }
+
+    private Employee findByLogin(String login) {
+        List<Employee> res = em.createQuery("SELECT item FROM Employee item WHERE item.login='" + login + "'").getResultList();
+        if (res == null || res.isEmpty() || res.get(0) == null) {
+            return null;
+        }
+        return res.get(0);
     }
 
 }

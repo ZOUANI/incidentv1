@@ -21,23 +21,6 @@
                         <p:inputText id="annee" value="#{statistiqueController.annee}" title="Annee" />
 
 
-                        <p:outputLabel value="#{bundle.CreateIncidentLabel_etat}" for="etat" />
-                        <p:selectOneMenu id="etat" value="#{statistiqueController.etatIncident}" >
-                            <f:selectItem itemValue="0" itemLabel="--SELECT--"></f:selectItem>
-                            <f:selectItem itemValue="1" itemLabel="En Cours"></f:selectItem>
-                            <f:selectItem itemValue="2" itemLabel="Traite"></f:selectItem>
-                            <f:selectItem itemValue="3" itemLabel="Non Traite"></f:selectItem>
-
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateIncidentLabel_typeIncident}" for="typeIncident" />
-                        <p:selectOneMenu id="typeIncident" value="#{statistiqueController.typeIncident}" >
-                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
-                            <f:selectItems value="#{typeIncidentController.itemsAvailableSelectOne}"
-                                           var="typeIncidentItem"
-                                           itemValue="#{typeIncidentItem}"
-                                           itemLabel="#{typeIncidentItem.libelle}"
-                                           />
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateIncidentLabel_employeeDeclarant}" for="employeeDeclarant" />
                         <p:selectOneMenu id="employeeDeclarant" value="#{statistiqueController.employeeDeclarant}" >
                             <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"></f:selectItem>
@@ -47,7 +30,8 @@
                                            itemLabel="#{employeeDeclarantItem.nom}"
                                            />
                         </p:selectOneMenu>
-                        <p:commandButton id="createButton" icon="ui-icon-search"   value="Afficher" actionListener="#{statistiqueController.afficherChartIncident()}" update=":StatListForm:barChart" />
+
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="Afficher" actionListener="#{statistiqueController.afficherChartPlan()}" update=":StatListForm:barChart" />
 
                     </p:panelGrid>
                 </p:fieldset>

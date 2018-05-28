@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 28 Mai 2018 à 16:58
+-- Généré le :  Mar 29 Mai 2018 à 00:30
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -98,6 +98,11 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `PRENOM` varchar(255) DEFAULT NULL,
   `TEL` varchar(255) DEFAULT NULL,
   `ENTITEADMINISTRATIVE_ID` bigint(20) DEFAULT NULL,
+  `LOGIN` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  `BLOCKED` int(1) NOT NULL,
+  `NBRCNX` int(1) NOT NULL,
+  `MDPCHANGED` smallint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_EMPLOYEE_ENTITEADMINISTRATIVE_ID` (`ENTITEADMINISTRATIVE_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -106,28 +111,28 @@ CREATE TABLE IF NOT EXISTS `employee` (
 -- Contenu de la table `employee`
 --
 
-INSERT INTO `employee` (`ID`, `EMAIL`, `NOM`, `PRENOM`, `TEL`, `ENTITEADMINISTRATIVE_ID`) VALUES
-('AE165 118', 'zidani@ocp.ma', 'ZIDANI ', 'MAYSSAE ', '06 56 62 08 44', NULL),
-('AE165018', 'maimoun@ocp.ma', 'MAIMOUNI ', 'AIMANE', '06 87 63 02 39', NULL),
-('AI177184', 'hmamed@ocp.ma', 'HMAMED ', 'HABIBA', '06 68 02 02 31', NULL),
-('CH012114', 'fennane@ocp.ma', 'FENNANE ', 'OUSSAMA', '06 78 60 08 77', NULL),
-('CH077788', 'idman@ocp.ma', 'IDMANE ', 'MOHAMED', '06 76 55 54 44', NULL),
-('CH154747', 'bakari@ocp.ma', 'BAKRI ', 'SOUKAINA', '06 89 92 08 66', NULL),
-('CH154788', 'azize@ocp.ma', 'AZIZE ', 'AZIZE ACHRAF ', '06 98 65 08 77', NULL),
-('CH174888', 'aqil@ocp.ma', 'ÂQIL ', 'ASMAE', '06 76 90 05 90', NULL),
-('DE164234', 'tyah@ocp.ma', 'TYAH ', 'MOHAMED', '06 63 00 19 76', NULL),
-('EE106147', 'mouhoub@ocp.ma', 'MOUHOUB  ', 'REDALLAH', '06 73 16 08 77', NULL),
-('EE107887', 'krekeb@ocp.ma', 'KERKEB ', 'YASMINA', '06 76 62 60 04', NULL),
-('EE109011', 'jebbari@ocp.ma', 'JEBBARI', 'OTHMANE', '06 76 65 08 06', NULL),
-('EE160087', 'aitboumalik@ocp.ma', 'AIT BOUMLIK ', 'OTHMANE', '06 78 16 08 77', NULL),
-('EE165487', 'boozaaboun@ocp.ma', 'BOUZAABOUN ', 'ZINEB', '06 37 72 02 39', NULL),
-('EQ060147', 'boujandar@ocp.ma', 'BOUJANDAR ', 'AICHA', '06 73 51 08 67', NULL),
-('GE102147', 'agerouassi@ocp.ma', 'AGEROUASSI ', 'HAYAM', '06 63 80 09 66', NULL),
-('HA177069', 'boussif@ocp.ma', 'BOUSSIF ', 'OUSSAMA', '06 73 60 02 55', NULL),
-('HA177159', 'chaquiq@ocp.ma', 'CHAQUIQ ', 'HAMZA', '06 37 72 02 31', NULL),
-('HH119750', 'foussoul@ocp.ma', 'FOUSSOUL ', 'AYOUB', '06 78 92 04 77', NULL),
-('HH120650', 'moutchou@ocp.ma', 'MOUTCHOU ', 'ZAKARIAE', '06 37 90 24 31', NULL),
-('QP147225', 'zarou@ocp.ma', 'ZAROU ', 'ZAROU AYOUB', '06 78 16 50 88', NULL);
+INSERT INTO `employee` (`ID`, `EMAIL`, `NOM`, `PRENOM`, `TEL`, `ENTITEADMINISTRATIVE_ID`, `LOGIN`, `PASSWORD`, `BLOCKED`, `NBRCNX`, `MDPCHANGED`) VALUES
+('AE165 118', 'zidani@ocp.ma', 'ZIDANI ', 'MAYSSAE ', '06 56 62 08 44', NULL, 'ZIDANI ', 'ZIDANI ', 0, 0, 0),
+('AE165018', 'maimoun@ocp.ma', 'MAIMOUNI ', 'AIMANE', '06 87 63 02 39', NULL, 'MAIMOUNI ', 'MAIMOUNI ', 0, 0, 0),
+('AI177184', 'hmamed@ocp.ma', 'HMAMED ', 'HABIBA', '06 68 02 02 31', NULL, 'HMAMED ', 'HMAMED ', 0, 0, 0),
+('CH012114', 'fennane@ocp.ma', 'FENNANE ', 'OUSSAMA', '06 78 60 08 77', NULL, 'FENNANE ', 'FENNANE ', 0, 0, 0),
+('CH077788', 'idman@ocp.ma', 'IDMANE ', 'MOHAMED', '06 76 55 54 44', NULL, 'IDMANE ', 'IDMANE ', 0, 0, 0),
+('CH154747', 'bakari@ocp.ma', 'BAKRI ', 'SOUKAINA', '06 89 92 08 66', NULL, 'BAKRI ', 'BAKRI ', 0, 0, 0),
+('CH154788', 'azize@ocp.ma', 'AZIZE ', 'AZIZE ACHRAF ', '06 98 65 08 77', NULL, 'AZIZE ', 'AZIZE ', 0, 0, 0),
+('CH174888', 'aqil@ocp.ma', 'ÂQIL ', 'ASMAE', '06 76 90 05 90', NULL, 'ÂQIL ', 'ÂQIL ', 0, 0, 0),
+('DE164234', 'tyah@ocp.ma', 'TYAH ', 'MOHAMED', '06 63 00 19 76', NULL, 'TYAH ', 'TYAH ', 0, 0, 0),
+('EE106147', 'mouhoub@ocp.ma', 'MOUHOUB  ', 'REDALLAH', '06 73 16 08 77', NULL, 'MOUHOUB  ', 'MOUHOUB  ', 0, 0, 0),
+('EE107887', 'krekeb@ocp.ma', 'KERKEB ', 'YASMINA', '06 76 62 60 04', NULL, 'KERKEB ', 'KERKEB ', 0, 0, 0),
+('EE109011', 'jebbari@ocp.ma', 'JEBBARI', 'OTHMANE', '06 76 65 08 06', NULL, 'JEBBARI', 'JEBBARI', 0, 0, 0),
+('EE160087', 'aitboumalik@ocp.ma', 'AIT BOUMLIK ', 'OTHMANE', '06 78 16 08 77', NULL, 'AIT BOUMLIK ', 'AIT BOUMLIK ', 0, 0, 0),
+('EE165487', 'boozaaboun@ocp.ma', 'BOUZAABOUN ', 'ZINEB', '06 37 72 02 39', NULL, 'BOUZAABOUN ', 'BOUZAABOUN ', 0, 0, 0),
+('EQ060147', 'boujandar@ocp.ma', 'BOUJANDAR ', 'AICHA', '06 73 51 08 67', NULL, 'BOUJANDAR ', 'BOUJANDAR ', 0, 0, 0),
+('GE102147', 'agerouassi@ocp.ma', 'AGEROUASSI ', 'HAYAM', '06 63 80 09 66', NULL, 'AGEROUASSI ', 'AGEROUASSI ', 0, 0, 0),
+('HA177069', 'boussif@ocp.ma', 'BOUSSIF ', 'OUSSAMA', '06 73 60 02 55', NULL, 'BOUSSIF ', 'BOUSSIF ', 0, 0, 0),
+('HA177159', 'chaquiq@ocp.ma', 'CHAQUIQ ', 'HAMZA', '06 37 72 02 31', NULL, 'CHAQUIQ ', 'CHAQUIQ ', 0, 0, 0),
+('HH119750', 'foussoul@ocp.ma', 'FOUSSOUL ', 'AYOUB', '06 78 92 04 77', NULL, 'FOUSSOUL ', 'FOUSSOUL ', 0, 0, 0),
+('HH120650', 'moutchou@ocp.ma', 'MOUTCHOU ', 'ZAKARIAE', '06 37 90 24 31', NULL, 'MOUTCHOU ', 'MOUTCHOU ', 0, 0, 0),
+('QP147225', 'zarou@ocp.ma', 'ZAROU ', 'ZAROU AYOUB', '06 78 16 50 88', NULL, 'ZAROU ', 'ZAROU ', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -204,6 +209,13 @@ CREATE TABLE IF NOT EXISTS `executionplanpreventif` (
   KEY `FK_EXECUTIONPLANPREVENTIF_RESPONSABLE_ID` (`RESPONSABLE_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `executionplanpreventif`
+--
+
+INSERT INTO `executionplanpreventif` (`ID`, `DATEDEPART`, `DATEFIN`, `DESCRIPTION`, `RESPONSABLE_ID`, `PLANPREVENTIF_ID`) VALUES
+(1, '2018-05-17', '2018-05-04', 'flousss', 'AE165 118', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -223,6 +235,14 @@ CREATE TABLE IF NOT EXISTS `executionplanpreventifitem` (
   KEY `FK_EXECUTIONPLANPREVENTIFITEM_RESPONSABLE_ID` (`RESPONSABLE_ID`),
   KEY `FK_EXECUTIONPLANPREVENTIFITEM_EQUIPEMENT_ID` (`EQUIPEMENT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `executionplanpreventifitem`
+--
+
+INSERT INTO `executionplanpreventifitem` (`ID`, `DATEDEPART`, `DATEFIN`, `DESCRIPTION`, `EQUIPEMENT_ID`, `EXECUTIONPLANPREVENTIF_ID`, `RESPONSABLE_ID`) VALUES
+(54, '2018-05-16', '2018-05-25', '9siweraaaaghiweraaaaaaa', 'sn°5464887', 1, 'AI177184'),
+(53, '2018-05-16', '2018-05-25', 'sghiweraaaaaaa', 'sn°5414581', 1, 'AI177184');
 
 -- --------------------------------------------------------
 
@@ -271,6 +291,14 @@ CREATE TABLE IF NOT EXISTS `incident` (
   KEY `FK_INCIDENT_TYPEINCIDENT_ID` (`TYPEINCIDENT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `incident`
+--
+
+INSERT INTO `incident` (`ID`, `DATEINCIDENT`, `DATEVALIDATION`, `DESCRIPTION`, `ETAT`, `EMPLOYEEDECLARANT_ID`, `TYPEINCIDENT_ID`, `VALIDATEUR_ID`) VALUES
+(1, '2018-05-11', NULL, 'ggg', 1, 'AE165 118', 52, NULL),
+(2, '2018-06-07', NULL, '', 2, 'AE165018', 53, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -291,6 +319,16 @@ CREATE TABLE IF NOT EXISTS `incidentitem` (
   KEY `FK_INCIDENTITEM_CATEGORIEDELAI_ID` (`CATEGORIEDELAI_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `incidentitem`
+--
+
+INSERT INTO `incidentitem` (`ID`, `DATETRAITEMENT`, `CATEGORIEDELAI_ID`, `DEGREURGENCE_ID`, `EQUIPEMENT_ID`, `INCIDENT_ID`) VALUES
+(2, '2018-05-18 00:00:00', 156, 153, 'sn°5414581', 1),
+(1, '2018-05-08 00:00:00', 155, 152, 'sn°5418847', 1),
+(4, '2018-05-16 00:00:00', 154, 153, 'sn°5414581', 2),
+(3, '2018-05-16 00:00:00', 154, 151, 'sn°4510587', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -306,6 +344,13 @@ CREATE TABLE IF NOT EXISTS `planpreventif` (
   PRIMARY KEY (`ID`),
   KEY `FK_PLANPREVENTIF_RESPONSABLE_ID` (`RESPONSABLE_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `planpreventif`
+--
+
+INSERT INTO `planpreventif` (`ID`, `DATEDEPART`, `DATEFIN`, `DESCRIPTION`, `RESPONSABLE_ID`) VALUES
+(1, '2018-05-10', '2018-05-04', 'nhhh', 'AE165 118');
 
 -- --------------------------------------------------------
 
@@ -327,6 +372,14 @@ CREATE TABLE IF NOT EXISTS `planpreventifitem` (
   KEY `FK_PLANPREVENTIFITEM_PLANPREVENTIF_ID` (`PLANPREVENTIF_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `planpreventifitem`
+--
+
+INSERT INTO `planpreventifitem` (`ID`, `DATEDEPART`, `DATEFIN`, `DESCRIPTION`, `CATEGORIEEQUIPEMENT_ID`, `PLANPREVENTIF_ID`, `RESPONSABLE_ID`) VALUES
+(52, '2019-05-03', '2019-05-23', 'oummmmm', 108, 1, 'CH012114'),
+(51, '2018-05-03', '2018-05-23', 'jsjsj', 109, 1, 'AE165 118');
+
 -- --------------------------------------------------------
 
 --
@@ -338,6 +391,13 @@ CREATE TABLE IF NOT EXISTS `sequence` (
   `SEQ_COUNT` decimal(38,0) DEFAULT NULL,
   PRIMARY KEY (`SEQ_NAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `sequence`
+--
+
+INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
+('SEQ_GEN', '100');
 
 -- --------------------------------------------------------
 
@@ -394,6 +454,14 @@ CREATE TABLE IF NOT EXISTS `traitementincident` (
   KEY `FK_TRAITEMENTINCIDENT_INCIDENT_ID` (`INCIDENT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `traitementincident`
+--
+
+INSERT INTO `traitementincident` (`ID`, `DATETRAITEMENT`, `DESCRIPTION`, `ETAT`, `INCIDENT_ID`) VALUES
+(1, '2018-05-10', 'lolo', 2, 1),
+(2, '2018-07-24', 'mpmp', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -412,6 +480,16 @@ CREATE TABLE IF NOT EXISTS `traitementincidentitem` (
   KEY `FK_TRAITEMENTINCIDENTITEM_EQUIPEMENT_ID` (`EQUIPEMENT_ID`),
   KEY `FK_TRAITEMENTINCIDENTITEM_TECHNICIEN_ID` (`TECHNICIEN_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `traitementincidentitem`
+--
+
+INSERT INTO `traitementincidentitem` (`ID`, `DATETRAITEMENT`, `ETAT`, `EQUIPEMENT_ID`, `TECHNICIEN_ID`, `TRAITEMENTINCIDENT_ID`) VALUES
+(6, '2018-05-22 00:00:00', 2, 'sn°5414581', 3, 1),
+(5, '2018-05-23 00:00:00', 2, 'sn°5412587', 2, 1),
+(8, '2018-05-24 00:00:00', 1, 'sn°5418847', 4, 2),
+(7, '2018-05-16 00:00:00', 1, 'sn°5412587', 2, 2);
 
 -- --------------------------------------------------------
 
