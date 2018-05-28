@@ -16,9 +16,7 @@
                         <p:inputText id="degre" value="#{degreUrgenceController.selected.degre}" title="#{bundle.CreateDegreUrgenceTitle_degre}" />
                         <p:outputLabel value="#{bundle.CreateDegreUrgenceLabel_description}" for="description" />
                         <p:inputText id="description" value="#{degreUrgenceController.selected.description}" title="#{bundle.CreateDegreUrgenceTitle_description}" />
-                        <p:outputLabel value="#{bundle.CreateDegreUrgenceLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{degreUrgenceController.selected.id}" title="#{bundle.CreateDegreUrgenceTitle_id}" />
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{degreUrgenceController.create}" value="#{bundle.Save}" update="display,:DegreUrgenceListForm:datalist,:growl" oncomplete="handleSubmit(args,'DegreUrgenceCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="DegreUrgenceCreateDialog.hide()"/>
                 </h:panelGroup>

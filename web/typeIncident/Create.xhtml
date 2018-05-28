@@ -12,8 +12,6 @@
             <h:form id="TypeIncidentCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{typeIncidentController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTypeIncidentLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{typeIncidentController.selected.id}" title="#{bundle.CreateTypeIncidentTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateTypeIncidentLabel_libelle}" for="libelle" />
                         <p:inputText id="libelle" value="#{typeIncidentController.selected.libelle}" title="#{bundle.CreateTypeIncidentTitle_libelle}" />
                     </p:panelGrid>

@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le: Dim 27 Mai 2018 à 19:27
+-- Généré le: Lun 28 Mai 2018 à 00:25
 -- Version du serveur: 5.5.27-log
 -- Version de PHP: 5.4.6
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -51,7 +50,7 @@ INSERT INTO `categoriedelai` (`ID`, `DESCRIPTION`, `NBRHEURE`) VALUES
 
 CREATE TABLE IF NOT EXISTS `categorieequipement` (
   `ID` bigint(20) NOT NULL,
-  `LIBELLE` bigint(20) DEFAULT NULL,
+  `LIBELLE` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -60,8 +59,8 @@ CREATE TABLE IF NOT EXISTS `categorieequipement` (
 --
 
 INSERT INTO `categorieequipement` (`ID`, `LIBELLE`) VALUES
-(108, 0),
-(109, 0);
+(108, '0'),
+(109, '0');
 
 -- --------------------------------------------------------
 
@@ -384,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `sequence` (
 --
 
 INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
-('SEQ_GEN', '50');
+('SEQ_GEN', '450');
 
 -- --------------------------------------------------------
 
@@ -441,6 +440,14 @@ CREATE TABLE IF NOT EXISTS `traitementincident` (
   KEY `FK_TRAITEMENTINCIDENT_INCIDENT_ID` (`INCIDENT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `traitementincident`
+--
+
+INSERT INTO `traitementincident` (`ID`, `DATETRAITEMENT`, `DESCRIPTION`, `ETAT`, `INCIDENT_ID`) VALUES
+(351, '2018-05-09', 'suppression des virus et vérification du disque dur', 0, 2),
+(401, '2018-05-10', ' changement de PCB à froid', 0, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -480,7 +487,8 @@ CREATE TABLE IF NOT EXISTS `typeentiteadministrative` (
 INSERT INTO `typeentiteadministrative` (`ID`, `LIBELLE`, `NIVEAU`) VALUES
 (19, 'Direction commerciale', 1),
 (20, 'pôle finances et support de gestion', 1),
-(22, 'pôle approvisionnement et support logistique', 1);
+(22, 'pôle approvisionnement et support logistique', 1),
+(202, 'pôle chimie', 1);
 
 -- --------------------------------------------------------
 
@@ -500,8 +508,11 @@ CREATE TABLE IF NOT EXISTS `typeincident` (
 
 INSERT INTO `typeincident` (`ID`, `LIBELLE`) VALUES
 (117, 'Panne'),
-(118, 'Dégradation');
-SET FOREIGN_KEY_CHECKS=1;
+(118, 'Dégradation'),
+(402, 'Perte de données'),
+(403, 'Panne d’électricité'),
+(404, 'incendie'),
+(405, 'explosion');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
