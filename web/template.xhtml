@@ -19,7 +19,7 @@
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
                 <h:form id="menuForm">
                     <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:menuitem value="#{bundle.Home}" outcome="/menu/menu" icon="ui-icon-home"/>
                         <p:submenu label="Plan Preventif" icon="ui-icon-note" >
                             <p:menuitem value="List PlanPreventif" outcome="/planPreventif/List.xhtml" />
                             <p:menuitem value="Create PlanPreventif" outcome="/planPreventif/Create.xhtml" />
@@ -44,7 +44,7 @@
                             <p:menuitem value="Fournisseur" outcome="/fournisseur/List.xhtml" />
                         </p:submenu>
                         <p:submenu label="Configuration" icon="ui-icon-gear">
-                            <p:menuitem value="Employee" url="../employee/List.xhtml" outcome="/employee/List.xhtml" />
+                            <p:menuitem value="Employee" url="../faces/employee/List.xhtml" outcome="/employee/List.xhtml" />
                             <p:menuitem value="EntiteAdministrative" outcome="/entiteAdministrative/List.xhtml" />
                             <p:menuitem value="Technicien" outcome="/technicien/List.xhtml" />
                             <p:menuitem value="TypeEntiteAdministrative" outcome="/typeEntiteAdministrative/List.xhtml" />
