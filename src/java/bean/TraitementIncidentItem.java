@@ -31,7 +31,7 @@ public class TraitementIncidentItem implements Serializable {
     private Technicien technicien;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateTraitement;
-    private int etat;
+    private String etat;
     @ManyToOne
     private TraitementIncident traitementIncident;
 
@@ -67,11 +67,11 @@ public class TraitementIncidentItem implements Serializable {
         this.dateTraitement = dateTraitement;
     }
 
-    public int getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(int etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

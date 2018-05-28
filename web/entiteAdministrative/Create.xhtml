@@ -12,8 +12,6 @@
             <h:form id="EntiteAdministrativeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{entiteAdministrativeController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEntiteAdministrativeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{entiteAdministrativeController.selected.id}" title="#{bundle.CreateEntiteAdministrativeTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateEntiteAdministrativeLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{entiteAdministrativeController.selected.nom}" title="#{bundle.CreateEntiteAdministrativeTitle_nom}" />
                         <p:outputLabel value="#{bundle.CreateEntiteAdministrativeLabel_typeEntiteAdministrative}" for="typeEntiteAdministrative" />

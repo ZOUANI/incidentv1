@@ -31,25 +31,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentItemTitle_incident}"/>
                             </f:facet>
-                            <h:outputText value="#{item.incident}"/>
+                            <h:outputText value="#{item.incident.description}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentItemTitle_equipement}"/>
                             </f:facet>
-                            <h:outputText value="#{item.equipement}"/>
+                            <h:outputText value="#{item.equipement.libelle}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentItemTitle_degreUrgence}"/>
                             </f:facet>
-                            <h:outputText value="#{item.degreUrgence}"/>
+                            <h:outputText value="#{item.degreUrgence.description}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIncidentItemTitle_categorieDelai}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categorieDelai}"/>
+                            <h:outputText value="#{item.categorieDelai.description}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -59,12 +59,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIncidentItemTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{incidentItemController.prepareCreate}" update=":IncidentItemCreateForm" oncomplete="PF('IncidentItemCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IncidentItemViewForm" oncomplete="PF('IncidentItemViewDialog').show()" disabled="#{empty incidentItemController.selected}"/>

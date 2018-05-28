@@ -45,7 +45,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListExecutionPlanPreventifTitle_responsable}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.responsable}"/>
+                                    <h:outputText value="#{item.responsable.nom}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
@@ -86,7 +86,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_equipement}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.equipement}"/>
+                                    <h:outputText value="#{item.equipement.libelle}"/>
                                 </p:column>
 
                                 <p:column>
@@ -109,7 +109,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListExecutionPlanPreventifItemTitle_responsable}"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.responsable}"/>
+                                    <h:outputText value="#{item.responsable.nom}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
