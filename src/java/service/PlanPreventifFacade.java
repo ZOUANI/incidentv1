@@ -5,9 +5,13 @@
  */
 package service;
 
+import bean.Employee;
 import bean.PlanPreventif;
 import bean.PlanPreventifItem;
 import bean.PlanPreventif;
+import bean.TypeIncident;
+import controller.util.SearchUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,8 +31,33 @@ public class PlanPreventifFacade extends AbstractFacade<PlanPreventif> {
     @EJB
     PlanPreventifItemFacade planPreventifItemFacade;
 
+    public List<Long> findByCriteria(int annee, Employee responsable) {
+        List<Long> res = new ArrayList();
+        for (int i = 1; i <= 12; i++) {
+            res.add(findByCriteria(i, annee, responsable));
+        }
+        return res;
+    }
+
+    public Long findByCriteria(int mois, int annee, Employee responsable) {
+        String moisConversion = mois + "";
+        if (mois < 10) {
+            moisConversion = "0" + mois;
+        }
+        String query = "SELECT COUNT(item.id) FROM PlanPreventif item WHERE dateDepart LIKE '" + annee + "-" + moisConversion + "-%'";
+        if (responsable != null) {
+            query += SearchUtil.addConstraint("item", "responsable", "=", responsable.getId());
+        }
+        List<Long> res = em.createQuery(query).getResultList();
+        if (res == null || res.isEmpty() || res.get(0) == null) {
+            return 0L;
+        }
+        return res.get(0);
+    }
+
     @Override
-    public void create(PlanPreventif planPreventif) {
+    public void create(PlanPreventif planPreventif
+    ) {
         planPreventif.setId(generateId("PlanPreventif", "id"));
         super.create(planPreventif);
     }
